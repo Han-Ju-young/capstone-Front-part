@@ -8,7 +8,7 @@ export const getCookie = (name) => {
   return cookies.get(name);
 };
 
-function NaverLogin() {
+function SoLogin() {
   console.log(window.location.href);
   const code = new URL(window.location.href).searchParams.get("token"); // 현재 URL에서 토큰만 추출
   console.log(code);
@@ -28,4 +28,4 @@ function NaverLogin() {
   return;
 }
 
-export default NaverLogin;
+export default SoLogin;

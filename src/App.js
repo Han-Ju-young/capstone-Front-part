@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Review from "./pages/Review";
 import Popular from "./pages/Popular";
@@ -7,14 +8,14 @@ import AiBook from "./pages/AiBook";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
 import Login from "./pages/Login";
-import NaverLogin from "./pages/NaverLogin";
+import SoLogin from "./pages/SoLogin";
+import Header from "./pages/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Header />
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -22,7 +23,7 @@ function App() {
           <Route path="/aibook" element={<AiBook />} />
           <Route path="/review" element={<Review />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sologin" element={<NaverLogin />} />
+          <Route path="/sologin" element={<SoLogin />} />
         </Routes>
       </div>
     </BrowserRouter>

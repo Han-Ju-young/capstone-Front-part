@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import {
   MoblieIcon,
@@ -12,13 +12,13 @@ import {
   NavBtnLink,
 } from "./NavbarElements";
 
-const Navbar = () => {
+const Navbar = ({ toggle }) => {
   return (
     <div>
       <Nav>
         <NavbarContainer>
           <NavLogo to="/">LOGO</NavLogo>
-          <MoblieIcon>
+          <MoblieIcon onClick={toggle}>
             <FaBars />
           </MoblieIcon>
           <NavMenu>

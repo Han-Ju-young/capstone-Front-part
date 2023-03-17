@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CloseIcon,
   Icon,
@@ -10,22 +10,30 @@ import {
   SideBtnWrap,
 } from "./SidebarElements";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, toggle }) => {
   return (
     <>
-      <SidebarContainer>
-        <Icon>
+      <SidebarContainer isOpen={isOpen} onClick={toggle}>
+        <Icon onClick={toggle}>
           <CloseIcon />
         </Icon>
         <SidebarWrapper>
           <SidebarMenu>
-            <SidebarLink to="/">Home</SidebarLink>
-            <SidebarLink to="/popular">인기도서</SidebarLink>
-            <SidebarLink to="/aibook">인공지능 추천도서</SidebarLink>
-            <SidebarLink to="/review">도서리뷰</SidebarLink>
+            <SidebarLink to="/" onClick={toggle}>
+              Home
+            </SidebarLink>
+            <SidebarLink to="/popular" onClick={toggle}>
+              인기도서
+            </SidebarLink>
+            <SidebarLink to="/aibook" onClick={toggle}>
+              인공지능 추천도서
+            </SidebarLink>
+            <SidebarLink to="/review" onClick={toggle}>
+              도서리뷰
+            </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
-            <SidebarRoute to="/singin">Sign In</SidebarRoute>
+            <SidebarRoute to="/login">Log In</SidebarRoute>
           </SideBtnWrap>
         </SidebarWrapper>
       </SidebarContainer>
