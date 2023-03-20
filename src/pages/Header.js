@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };

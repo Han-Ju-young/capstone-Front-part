@@ -5,12 +5,11 @@ import Home from "./pages/Home";
 import Review from "./pages/Review";
 import Popular from "./pages/Popular";
 import AiBook from "./pages/AiBook";
+import BookDeal from "./pages/BookDeal";
 
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Login from "./pages/Login";
-import SoLogin from "./pages/SoLogin";
 import Header from "./pages/Header";
+import Login from "./components/Login/Login";
+import SoLogin from "./components/Login/SoLogin";
 
 function App() {
   return (
@@ -22,6 +21,7 @@ function App() {
           <Route path="/popular" element={<Popular />} />
           <Route path="/aibook" element={<AiBook />} />
           <Route path="/review" element={<Review />} />
+          <Route path="/bookdeal" element={<BookDeal />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sologin" element={<SoLogin />} />
         </Routes>

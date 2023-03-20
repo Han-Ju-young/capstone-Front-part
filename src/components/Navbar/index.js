@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import {
   MoblieIcon,
@@ -34,9 +33,12 @@ const Navbar = ({ toggle }) => {
             <NavItem>
               <NavLinks to="/review">도서리뷰</NavLinks>
             </NavItem>
+            <NavItem>
+              <NavLinks to="/bookdeal">도서거래</NavLinks>
+            </NavItem>
           </NavMenu>
           <NavBtn>
-            <NavBtnLink to="/login">Login</NavBtnLink>
+            <NavBtnLink to="/login">Log In</NavBtnLink>
           </NavBtn>
         </NavbarContainer>
       </Nav>
