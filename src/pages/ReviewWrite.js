@@ -61,7 +61,8 @@ const ReviewWrite = (props) => {
   ]);
   const [score, setScore] = useState(0);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDUyNTA3OX0.Anwy0JNzN_c1JIM0ZUQXC3BDdY3LAi7in-S-80xeTbI"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NDk5Nn0.8JqX9AbKipytNDyaGrejeZGnHlvfbqKXS5u4krhPX6k"
+    // "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NTgzN30.7dIZvRtFJDBixOJu8gxpbMoSyc9U60sxtzlPVgGUoak"
   );
 
   useEffect(() => {
