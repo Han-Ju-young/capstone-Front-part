@@ -11,7 +11,7 @@ import {
   NavBtnLink,
 } from "./NavbarElements";
 
-const Navbar = ({ toggle }) => {
+const Navbar = ({ toggle, isLog, setLog }) => {
   return (
     <div>
       <Nav>
@@ -37,8 +37,14 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="/bookdeal">도서거래</NavLinks>
             </NavItem>
           </NavMenu>
-          <NavBtn>
-            <NavBtnLink to="/login">Log In</NavBtnLink>
+          <NavBtn id="loginbtn">
+            {isLog ? (
+              <NavBtnLink to="/login" onClick={setLog}>
+                LOG IN TEST
+              </NavBtnLink>
+            ) : (
+              <NavBtnLink onClick={setLog}>LOG OUT TEST</NavBtnLink>
+            )}
           </NavBtn>
         </NavbarContainer>
       </Nav>

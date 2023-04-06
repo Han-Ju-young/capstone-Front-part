@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import App from "../App";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLog, setIsLog] = useState(true);
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+  const setLog = () => {
+    setIsLog(!isLog);
+  };
+
   return (
     <>
-      <Navbar toggle={toggle} />
-      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <Navbar toggle={toggle} isLog={isLog} setLog={setLog} />
+      <Sidebar isOpen={isOpen} toggle={toggle} isLog={isLog} setLog={setLog} />
     </>
   );
 };

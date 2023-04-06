@@ -1,0 +1,81 @@
+.header {
+  display: flex;
+  margin-left: 5vw;
+}
+.header h3 {
+  display: flex;
+  flex: 0.4 auto;
+}
+
+.menus {
+  display: flex;
+  align-items: center;
+}
+.main-menus {
+  display: flex;
+  align-items: center;
+  flex: 0.4 auto;
+  font-size: 15px;
+  justify-content: space-around;
+}
+.login-menus {
+  display: flex;
+  align-items: center;
+  flex: 0.2 auto;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.main-contents {
+  margin: 4vh 5vw 3vh 5vw;
+}
+.main-contents-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-contents-header div {
+  display: flex;
+  align-items: center;
+}
+
+.main-contents-reviews {
+}
+
+.row-review-info {
+  background-color: #f2f2f2;
+  display: flex;
+  margin-top: 20px;
+}
+
+.row-review-info img {
+  width: 100px;
+  height: 100px;
+}
+
+.row-review {
+  display: flex;
+  flex-direction: column;
+  flex: 0.8 auto;
+  padding: 10px;
+}
+
+.row-rivew-like {
+  display: flex;
+  flex: 0.2 auto;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+}
+
+#review-text {
+  margin-top: 20px;
+}
+
+.page-move {
+  position: fixed;
+  bottom: 10vh;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

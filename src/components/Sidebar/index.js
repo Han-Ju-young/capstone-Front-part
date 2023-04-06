@@ -9,7 +9,7 @@ import {
   SideBtnWrap,
 } from "./SidebarElements";
 
-const Sidebar = ({ isOpen, toggle }) => {
+const Sidebar = ({ isOpen, toggle, isLog }) => {
   return (
     <>
       <SidebarContainer isOpen={isOpen} onClick={toggle}>
@@ -35,7 +35,13 @@ const Sidebar = ({ isOpen, toggle }) => {
             </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
-            <SidebarRoute to="/login">Log In</SidebarRoute>
+            {isLog ? (
+              <SidebarRoute to="/login">LOG IN TEST</SidebarRoute>
+            ) : (
+              <SidebarRoute onClick={localStorage.removeItem("accessToken")}>
+                LOG OUT TEST
+              </SidebarRoute>
+            )}
           </SideBtnWrap>
         </SidebarWrapper>
       </SidebarContainer>
