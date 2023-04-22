@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import App from "../App";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 

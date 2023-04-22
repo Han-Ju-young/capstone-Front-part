@@ -1,4 +1,22 @@
+import { useNavigate } from "react-router-dom";
+
 const BookList = (item) => {
+  const navigate = useNavigate();
+  const navigateToPurchase = () => {
+    navigate("/detail", {
+      state: {
+        cover: `${item.cover}`,
+        title: `${item.title}`,
+        author: `${item.author}`,
+        publisher: `${item.publisher}`,
+        pubDate: `${item.pubDate}`,
+        description: `${item.description}`,
+        link: `${item.link}`,
+        isbn: `${item.isbn}`,
+      },
+    });
+  };
+
   const coverStyle = {
     width: "150px",
     height: "200px",
@@ -17,6 +35,11 @@ const BookList = (item) => {
     color: "white",
     height: "30px",
   };
+  const buttonsty = {
+    backgroundColor: "white",
+    border: "none",
+    marginRight: "20px",
+  };
 
   return (
     <div style={divStyle}>
@@ -24,7 +47,9 @@ const BookList = (item) => {
         <tbody>
           <tr>
             <td rowSpan={4}>
-              <img src={item.cover} alt="bookCover" style={coverStyle} />
+              <button style={buttonsty} onClick={() => navigateToPurchase()}>
+                <img src={item.cover} alt="bookCover" style={coverStyle} />
+              </button>
             </td>
             <td style={titleStyle}>{item.title}</td>
           </tr>

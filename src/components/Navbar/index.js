@@ -38,7 +38,7 @@ const Navbar = ({ toggle, isLog, setLog }) => {
             </NavItem>
           </NavMenu>
           <NavBtn id="loginbtn">
-            {isLog ? (
+            {!isLog ? (
               <NavBtnLink to="/login" onClick={setLog}>
                 LOG IN TEST
               </NavBtnLink>

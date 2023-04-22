@@ -22,6 +22,7 @@ const BestBook = ({ category }) => {
         description: it.description,
         pubDate: it.pubDate,
         bestRank: it.bestRank,
+        isbn: it.isbn13,
       };
     });
     setData(() => initData);

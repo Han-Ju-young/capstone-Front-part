@@ -3,6 +3,9 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import "./review.css";
 import styled from "styled-components";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Wrap = styled.div`
   display: flex;
@@ -38,7 +41,14 @@ const Stars = styled.div`
   }
 `;
 
-const ARRAY = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const buttonStyle = {
+  backgroundColor: "#22b8cf",
+  border: "none",
+  color: "white",
+  height: "30px",
+};
+
+const ARRAY = [0, 1, 2, 3, 4];
 
 const ReviewWrite = (props) => {
   const [reviews, setReviews] = useState([]);
@@ -47,22 +57,10 @@ const ReviewWrite = (props) => {
   const [bookReview, setBookReview] = useState("");
   const [ratingValue, setRatingValue] = useState(0);
   // 별점 기본값 설정
-  const [clicked, setClicked] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [score, setScore] = useState(0);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NDk5Nn0.8JqX9AbKipytNDyaGrejeZGnHlvfbqKXS5u4krhPX6k"
-    // "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NTgzN30.7dIZvRtFJDBixOJu8gxpbMoSyc9U60sxtzlPVgGUoak"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MjA4OTczMn0.VqYeWHG3sxErFSv5ZUJcgiG38vlThZris1h8NIxSHwM"
   );
 
   useEffect(() => {
@@ -124,8 +122,9 @@ const ReviewWrite = (props) => {
           onClick={() => {
             props.isModalClose();
           }}
+          style={buttonStyle}
         >
-          Modal close
+          닫기
         </button>
       </div>
       <div className="info">
@@ -138,35 +137,37 @@ const ReviewWrite = (props) => {
             props.isModalClose();
           }}
         >
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text text-right">ISBN</span>
-            </div>
-            <textarea
-              type="text"
-              className="form-control text-left"
-              id="title"
-              value={title}
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1" style={{ width: "60px" }}>
+              ISBN
+            </InputGroup.Text>
+            <Form.Control
+              placeholder="ISBN"
+              aria-label="ISBN"
+              aria-describedby="basic-addon1"
               onChange={handleTitleChange}
-              cols="50"
-              rows="2"
-            ></textarea>
-          </div>
+              value={title}
+            />
+          </InputGroup>
 
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">
-              <span className="input-group-text text-right">리뷰</span>
-            </div>
-            <textarea
-              className="form-control text-left"
-              id="bookReview"
-              cols="130"
-              rows="20"
+          <InputGroup className="mb-3">
+            <InputGroup.Text
+              id="basic-addon1"
+              style={{ width: "60px", height: "200px" }}
+            >
+              리뷰
+            </InputGroup.Text>
+            <Form.Control
               placeholder="300자까지 입력할 수 있습니다."
+              aria-label="write_review"
+              aria-describedby="basic-addon1"
               value={bookReview}
               onChange={handleReviewChange}
-            ></textarea>
-          </div>
+              cols="130"
+              rows="20"
+            />
+          </InputGroup>
+
           <Wrap>
             <RatingText>평가하기</RatingText>
             <Stars>
@@ -185,10 +186,12 @@ const ReviewWrite = (props) => {
               })}
             </Stars>
           </Wrap>
-          <h3>{`스코어 : ${score}`}</h3>
+          <h3
+            style={{ marginTop: "30px", marginBottom: "30px" }}
+          >{`별점 : ${score}.0`}</h3>
           <div className="review">
             <button type="submit" className="btn btn-primary">
-              리뷰 작성
+              리뷰 작성 완료
             </button>
           </div>
         </form>

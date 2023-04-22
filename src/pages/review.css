@@ -73,8 +73,8 @@
 }
 
 .page-move {
-  position: fixed;
-  bottom: 10vh;
+  /* position: fixed;
+  bottom: 10vh; */
   display: flex;
   width: 100%;
   justify-content: center;

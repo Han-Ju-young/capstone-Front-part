@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import ReviewWrite from "./ReviewWrite";
 import Modal from "react-modal";
 import "./review.css";
 
+const buttonStyle = {
+  backgroundColor: "#22b8cf",
+  border: "none",
+  color: "white",
+  height: "30px",
+};
+
 function Review() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);
   const [reviews, setReview] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NDk5Nn0.8JqX9AbKipytNDyaGrejeZGnHlvfbqKXS5u4krhPX6k"
-    // "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDg3NTgzN30.7dIZvRtFJDBixOJu8gxpbMoSyc9U60sxtzlPVgGUoak"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTk4OTgxOX0.SQGmixjGYM8LBjY6pHqhmFYkFG_JJVrv4gXGX9q5Bpk"
   );
 
   useEffect(() => {
@@ -48,6 +55,43 @@ function Review() {
       });
   };
 
+  const clickLikeBtn = (reviewId, isItClickedLikeBtn) => {
+    console.log("Authorization : " + `Bearer ${accessToken}`);
+    if (!isItClickedLikeBtn) {
+      axios({
+        method: "POST",
+        url: `http://3.36.227.160:8080/review/${reviewId}/like`,
+        headers: {
+          // 요청 헤더 설정
+          "Content-Type": "application/json", // Content-Type 설정
+          Authorization: `Bearer ${accessToken}`, // Authorization 설정
+        },
+      })
+        .then((response) => {
+          console.log("review/${reviewId}/like response : ", response);
+        })
+        .catch((error) => {
+          console.log("review/${reviewId}/like error : ", error);
+        });
+    } else {
+      axios({
+        method: "DELETE",
+        url: `http://3.36.227.160:8080/review/${reviewId}/like`,
+        headers: {
+          // 요청 헤더 설정
+          "Content-Type": "application/json", // Content-Type 설정
+          Authorization: `Bearer ${accessToken}`, // Authorization 설정
+        },
+      })
+        .then((response) => {
+          console.log("response : ", response);
+        })
+        .catch((error) => {
+          console.log(" : ", error);
+        });
+    }
+  };
+
   return (
     <>
       <section className="main-contents">
@@ -60,6 +104,7 @@ function Review() {
                 height: "30px",
                 border: "none",
                 backgroundColor: "skyblue",
+                ...buttonStyle,
               }}
               onClick={() => {
                 setIsModalOpen(true);
@@ -73,9 +118,13 @@ function Review() {
           return (
             <div className="main-contents-reviews" key={review.no}>
               <div className="row-review-info">
-                <img />
+                <Link
+                  to={`/bookDetail?bookAuthor=${review.bookAuthor}&bookImgUrl=${review.bookImgUrl}&bookTitle=${review.bookTitle}`}
+                >
+                  <img src={review.bookImgUrl} />
+                </Link>
                 <div className="row-review">
-                  <div>{`${review.memberName} ${review.createdAt.slice(
+                  <div>{`${review.memberNickname} ${review.createdAt.slice(
                     0,
                     10
                   )}`}</div>
@@ -85,14 +134,29 @@ function Review() {
                       display: "flex",
                     }}
                   >
-                    {[...new Array(review.grade)].map((el) => {
-                      return <FaStar />;
-                    })}
+                    <div>
+                      {[...new Array(review.grade)].map((el, idx) => {
+                        return <FaStar style={{ color: "#f4dd09" }} />;
+                      })}
+                    </div>
+                    <div style={{ marginLeft: "20px" }}>
+                      <h5>{review.grade}.0</h5>
+                    </div>
                   </div>
                 </div>
-                <div onClick={() => {}} className="row-rivew-like">
-                  ♡
-                </div>
+                <button
+                  style={{
+                    borderStyle: "none",
+                    color: `${review.liked ? "red" : ""}`,
+                  }}
+                  onClick={() => {
+                    clickLikeBtn(review.no, review.liked);
+                    getReviews();
+                  }}
+                  className="row-rivew-like"
+                >
+                  ♥
+                </button>
               </div>
             </div>
           );

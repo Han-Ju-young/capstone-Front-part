@@ -35,7 +35,7 @@ const Sidebar = ({ isOpen, toggle, isLog }) => {
             </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
-            {isLog ? (
+            {!isLog ? (
               <SidebarRoute to="/login">LOG IN TEST</SidebarRoute>
             ) : (
               <SidebarRoute onClick={localStorage.removeItem("accessToken")}>
