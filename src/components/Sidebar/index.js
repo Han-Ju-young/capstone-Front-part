@@ -30,9 +30,6 @@ const Sidebar = ({ isOpen, toggle, isLog }) => {
             <SidebarLink to="/review" onClick={toggle}>
               도서리뷰
             </SidebarLink>
-            <SidebarLink to="/bookdeal" onClick={toggle}>
-              도서거래
-            </SidebarLink>
           </SidebarMenu>
           <SideBtnWrap>
             {!isLog ? (

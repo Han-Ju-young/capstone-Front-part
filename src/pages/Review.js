@@ -18,7 +18,7 @@ function Review() {
   const [pageNum, setPageNum] = useState(0);
   const [reviews, setReview] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTk4OTgxOX0.SQGmixjGYM8LBjY6pHqhmFYkFG_JJVrv4gXGX9q5Bpk"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MjM5NDUzMn0.BS2UaY8rQ_7CMAE1MRyDNLcVaMazTBXo7voqoTbmens"
   );
 
   useEffect(() => {
@@ -35,11 +35,11 @@ function Review() {
   const getReviews = async () => {
     console.log(
       "url : ",
-      `http://3.36.227.160:8080/book/9788936433673/review?page=${pageNum}`
+      `https://api.look-book.site/book/9788936433673/review?page=${pageNum}`
     );
     axios({
       method: "GET",
-      url: `http://3.36.227.160:8080/book/9788936433673/review?page=${pageNum}`,
+      url: `https://api.look-book.site/book/9788936433673/review?page=${pageNum}`,
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정
@@ -60,7 +60,7 @@ function Review() {
     if (!isItClickedLikeBtn) {
       axios({
         method: "POST",
-        url: `http://3.36.227.160:8080/review/${reviewId}/like`,
+        url: `https://api.look-book.site/review/${reviewId}/like`,
         headers: {
           // 요청 헤더 설정
           "Content-Type": "application/json", // Content-Type 설정
@@ -76,7 +76,7 @@ function Review() {
     } else {
       axios({
         method: "DELETE",
-        url: `http://3.36.227.160:8080/review/${reviewId}/like`,
+        url: `https://api.look-book.site/review/${reviewId}/like`,
         headers: {
           // 요청 헤더 설정
           "Content-Type": "application/json", // Content-Type 설정

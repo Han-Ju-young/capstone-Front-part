@@ -91,7 +91,7 @@ const ReviewWrite = (props) => {
     };
     axios({
       method: "POST",
-      url: "http://3.36.227.160:8080/book/review",
+      url: "https://api.look-book.site/book/review",
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정

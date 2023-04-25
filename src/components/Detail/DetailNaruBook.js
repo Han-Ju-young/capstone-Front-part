@@ -5,8 +5,10 @@ import SimilarBook from "./SimilarBook";
 import AreaSide from "../Popular/AreaSide";
 import LibraryBook from "./LibraryBook";
 
-const DetailBook = () => {
+const DetailNaruBook = () => {
   const coverStyle = {
+    width: "150px",
+    height: "200px",
     marginRight: "20px",
   };
   const titleStyle = {
@@ -76,6 +78,7 @@ const DetailBook = () => {
         name: it.lib.libName,
         address: it.lib.address,
         tel: it.lib.tel,
+        fax: it.lib.fax,
         homepage: it.lib.homepage,
         closed: it.lib.closed,
         time: it.lib.operatingTime,
@@ -90,7 +93,7 @@ const DetailBook = () => {
         <table>
           <tbody>
             <tr>
-              <td rowSpan={4}>
+              <td rowSpan={2}>
                 <img src={userInfo.cover} alt="bookCover" style={coverStyle} />
               </td>
               <td style={titleStyle}>{userInfo.title}</td>
@@ -98,21 +101,6 @@ const DetailBook = () => {
             <tr>
               <td>
                 {userInfo.author} | {userInfo.publisher} | {userInfo.pubDate}
-              </td>
-            </tr>
-            <tr>
-              <td>{userInfo.description}</td>
-            </tr>
-            <tr>
-              <td>
-                <button
-                  style={buttonStyle}
-                  onClick={() => {
-                    window.open(userInfo.link);
-                  }}
-                >
-                  알라딘에서 도서 구매
-                </button>
               </td>
             </tr>
           </tbody>
@@ -155,4 +143,4 @@ const DetailBook = () => {
     </div>
   );
 };
-export default DetailBook;
+export default DetailNaruBook;

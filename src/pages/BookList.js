@@ -1,22 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 const BookList = (item) => {
-  const navigate = useNavigate();
-  const navigateToPurchase = () => {
-    navigate("/detail", {
-      state: {
-        cover: `${item.cover}`,
-        title: `${item.title}`,
-        author: `${item.author}`,
-        publisher: `${item.publisher}`,
-        pubDate: `${item.pubDate}`,
-        description: `${item.description}`,
-        link: `${item.link}`,
-        isbn: `${item.isbn}`,
-      },
-    });
-  };
-
   const coverStyle = {
     width: "150px",
     height: "200px",
@@ -39,6 +23,22 @@ const BookList = (item) => {
     backgroundColor: "white",
     border: "none",
     marginRight: "20px",
+  };
+
+  const navigate = useNavigate();
+  const navigateToPurchase = () => {
+    navigate("/detail", {
+      state: {
+        cover: `${item.cover}`,
+        title: `${item.title}`,
+        author: `${item.author}`,
+        publisher: `${item.publisher}`,
+        pubDate: `${item.pubDate}`,
+        description: `${item.description}`,
+        link: `${item.link}`,
+        isbn: `${item.isbn}`,
+      },
+    });
   };
 
   return (

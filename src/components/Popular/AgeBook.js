@@ -13,7 +13,7 @@ const AgeBook = ({ category }) => {
 
   const getData = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/popularity?pageNo=1&pageSize=10&age=" +
+      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&age=" +
         AgeData
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
@@ -23,6 +23,7 @@ const AgeBook = ({ category }) => {
         authors: it.doc.authors,
         publisher: it.doc.publisher,
         publication_year: it.doc.publication_year,
+        isbn: it.doc.isbn13,
       };
     });
     setData(() => initData);

@@ -14,7 +14,7 @@ const AreaBook = ({ category }) => {
   console.log(AreaData);
   const getData = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/popularity?pageNo=1&pageSize=10&region=" +
+      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&region=" +
         AreaData
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
@@ -24,6 +24,7 @@ const AreaBook = ({ category }) => {
         authors: it.doc.authors,
         publisher: it.doc.publisher,
         publication_year: it.doc.publication_year,
+        isbn: it.doc.isbn13,
       };
     });
     setData(() => initData);

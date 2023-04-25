@@ -10,7 +10,7 @@ const BestBook = ({ category }) => {
 
   const getData = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/bestseller"
+      "https://api.look-book.site/recommendation/bestseller"
     ).then((res) => res.json());
     const initData = res.item.map((it) => {
       return {

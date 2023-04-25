@@ -1,4 +1,5 @@
 import { FaBars } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
 import {
   MoblieIcon,
   Nav,
@@ -33,9 +34,6 @@ const Navbar = ({ toggle, isLog, setLog }) => {
             <NavItem>
               <NavLinks to="/review">도서리뷰</NavLinks>
             </NavItem>
-            <NavItem>
-              <NavLinks to="/bookdeal">도서거래</NavLinks>
-            </NavItem>
           </NavMenu>
           <NavBtn id="loginbtn">
             {!isLog ? (
@@ -43,7 +41,9 @@ const Navbar = ({ toggle, isLog, setLog }) => {
                 LOG IN TEST
               </NavBtnLink>
             ) : (
-              <NavBtnLink onClick={setLog}>LOG OUT TEST</NavBtnLink>
+              <div>
+                <NavBtnLink onClick={setLog}>LOG OUT TEST</NavBtnLink>
+              </div>
             )}
           </NavBtn>
         </NavbarContainer>
@@ -51,4 +51,6 @@ const Navbar = ({ toggle, isLog, setLog }) => {
     </div>
   );
 };
+// <p><NavLinks to="/mypage"><AiOutlineUser />마이페이지</NavLinks></p>
+
 export default Navbar;

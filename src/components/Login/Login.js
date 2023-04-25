@@ -2,9 +2,9 @@ import React from "react";
 import { LoginBtn, Container, Form, FormH1 } from "./LoginElements";
 
 const Login = () => {
-  const NAVER_URI = `http://3.36.227.160:8080/oauth2/authorization/naver?redirect_uri=http://localhost:3000/sologin`;
-  const KAKAO_URI = `http://3.36.227.160:8080/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/sologin`;
-  const GOOGLE_URI = `http://3.36.227.160:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000/sologin`;
+  const NAVER_URI = `https://api.look-book.site/oauth2/authorization/naver?redirect_uri=http://localhost:3000/sologin`;
+  const KAKAO_URI = `https://api.look-book.site/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/sologin`;
+  const GOOGLE_URI = `https://api.look-book.site/oauth2/authorization/google?redirect_uri=http://localhost:3000/sologin`;
   return (
     <>
       <Container>

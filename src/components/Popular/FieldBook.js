@@ -13,7 +13,7 @@ const FieldBook = ({ category }) => {
 
   const getData = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/genre?category=" + fieldData
+      "https://api.look-book.site/recommendation/genre?category=" + fieldData
     ).then((res) => res.json());
     const initData = res.item.map((it) => {
       return {
@@ -24,6 +24,7 @@ const FieldBook = ({ category }) => {
         publisher: it.publisher,
         description: it.description,
         pubDate: it.pubDate,
+        isbn: it.isbn13,
       };
     });
     setData(() => initData);

@@ -19,7 +19,7 @@ const GenderBook = ({ category }) => {
 
   const getData1 = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/popularity?pageNo=1&pageSize=10&gender=1"
+      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&gender=1"
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {
@@ -28,13 +28,14 @@ const GenderBook = ({ category }) => {
         authors: it.doc.authors,
         publisher: it.doc.publisher,
         publication_year: it.doc.publication_year,
+        isbn: it.doc.isbn13,
       };
     });
     setData1(() => initData);
   };
   const getData2 = async () => {
     const res = await fetch(
-      "http://3.36.227.160:8080/recommendation/popularity?pageNo=1&pageSize=10&gender=0"
+      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&gender=0"
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {

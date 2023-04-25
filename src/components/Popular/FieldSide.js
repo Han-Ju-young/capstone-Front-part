@@ -113,7 +113,7 @@ const FieldSide = ({ onFieldSelect, fieldData }) => {
           active={fieldData === v.id}
           onClick={() => onFieldSelect(v.id)}
         >
-          [ {v.name} ]
+          [{v.name}]
         </Category>
       ))}
     </CategoriesBlock>
