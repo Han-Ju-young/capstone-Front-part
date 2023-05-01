@@ -60,7 +60,7 @@ const ReviewWrite = (props) => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [score, setScore] = useState(0);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MjA4OTczMn0.VqYeWHG3sxErFSv5ZUJcgiG38vlThZris1h8NIxSHwM"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MjUyMzM2NX0.0wVOFpMhFD7IfVE94_PbMH3uAnHKqPyF9ZMXVxURdIw"
   );
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const ReviewWrite = (props) => {
   const handleStarClick = (index) => {
     console.log("index : ", index);
     let clickStates = [...clicked];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 6; i++) {
       clickStates[i] = i <= index ? true : false;
     }
     setClicked(clickStates);

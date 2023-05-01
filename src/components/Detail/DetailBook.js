@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SimilarBook from "./SimilarBook";
-import AreaSide from "../Popular/AreaSide";
+import AreaSide from "./AreaSide";
 import LibraryBook from "./LibraryBook";
 
 const DetailBook = () => {
@@ -10,7 +10,7 @@ const DetailBook = () => {
     marginRight: "20px",
   };
   const titleStyle = {
-    fontSize: "20px",
+    fontSize: "30px",
   };
   const divStyle = {
     marginBottom: "10px",
@@ -28,6 +28,7 @@ const DetailBook = () => {
     marginTop: "50px",
   };
 
+  const navigate = useNavigate();
   const location = useLocation();
   const userInfo = { ...location.state };
   const [data, setData] = useState([]);
@@ -94,17 +95,26 @@ const DetailBook = () => {
                 <img src={userInfo.cover} alt="bookCover" style={coverStyle} />
               </td>
               <td style={titleStyle}>{userInfo.title}</td>
+              <td
+                style={{
+                  textAlign: "right",
+                }}
+              >
+                <button style={buttonStyle} onClick={() => navigate(-1)}>
+                  {"< 이전으로"}
+                </button>
+              </td>
             </tr>
             <tr>
-              <td>
+              <td colSpan={2}>
                 {userInfo.author} | {userInfo.publisher} | {userInfo.pubDate}
               </td>
             </tr>
             <tr>
-              <td>{userInfo.description}</td>
+              <td colSpan={2}>{userInfo.description}</td>
             </tr>
             <tr>
-              <td>
+              <td colSpan={2}>
                 <button
                   style={buttonStyle}
                   onClick={() => {
@@ -122,7 +132,7 @@ const DetailBook = () => {
       <div>
         {data.length !== 0 ? (
           <div>
-            <div>
+            <div style={divStyle}>
               <p style={pStyle}>이 책과 유사한 도서 best 10</p>
               <br />
               {data &&

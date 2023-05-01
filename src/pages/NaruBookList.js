@@ -37,18 +37,33 @@ const NaruBookList = (item) => {
     <div style={divStyle}>
       <table>
         <tbody>
-          <tr>
-            <td rowSpan={2}>
-              <button style={buttonsty} onClick={() => navigateToPurchase()}>
-                <img
-                  src={item.bookImageURL}
-                  alt="bookCover"
-                  style={coverStyle}
-                />
-              </button>
-            </td>
-            <td style={titleStyle}>{item.bookname}</td>
-          </tr>
+          {item.bookImageURL.length !== 0 ? (
+            <tr>
+              <td rowSpan={2}>
+                <button style={buttonsty} onClick={() => navigateToPurchase()}>
+                  <img
+                    src={item.bookImageURL}
+                    alt="bookCover"
+                    style={coverStyle}
+                  />
+                </button>
+              </td>
+              <td style={titleStyle}>{item.bookname}</td>
+            </tr>
+          ) : (
+            <tr>
+              <td rowSpan={2}>
+                <button style={buttonsty} onClick={() => navigateToPurchase()}>
+                  <img
+                    src={"images/DefaultImage.png"}
+                    alt="bookCover"
+                    style={coverStyle}
+                  />
+                </button>
+              </td>
+              <td style={titleStyle}>{item.bookname}</td>
+            </tr>
+          )}
           <tr>
             <td>
               {item.authors} | {item.publisher} | {item.publication_year}

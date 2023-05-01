@@ -1,42 +1,74 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const SideAge = [
+const SideArea = [
   {
-    id: "infant",
-    name: "영유아",
+    id: "11",
+    name: "서울",
   },
   {
-    id: "chide",
-    name: "어린이",
+    id: "21",
+    name: "부산",
   },
   {
-    id: "elementary",
-    name: "초등",
+    id: "22",
+    name: "대구",
   },
   {
-    id: "teenager",
-    name: "10대",
+    id: "23",
+    name: "인천",
   },
   {
-    id: "twenties",
-    name: "20대",
+    id: "24",
+    name: "광주",
   },
   {
-    id: "thirties",
-    name: "30대",
+    id: "25",
+    name: "대전",
   },
   {
-    id: "forties",
-    name: "40대",
+    id: "26",
+    name: "울산",
   },
   {
-    id: "fifties",
-    name: "50대",
+    id: "29",
+    name: "세종",
   },
   {
-    id: "sixties",
-    name: "60세 이상",
+    id: "31",
+    name: "경기",
+  },
+  {
+    id: "32",
+    name: "강원",
+  },
+  {
+    id: "33",
+    name: "충북",
+  },
+  {
+    id: "34",
+    name: "충남",
+  },
+  {
+    id: "35",
+    name: "전북",
+  },
+  {
+    id: "36",
+    name: "전남",
+  },
+  {
+    id: "37",
+    name: "경북",
+  },
+  {
+    id: "38",
+    name: "경남",
+  },
+  {
+    id: "39",
+    name: "제주",
   },
 ];
 
@@ -76,14 +108,14 @@ const Category = styled.div`
     `}
 `;
 
-const AgeSide = ({ onAgeSelect, AgeData }) => {
+const AreaSide = ({ onAreaSelect, AreaData }) => {
   return (
     <CategoriesBlock>
-      {SideAge.map((v) => (
+      {SideArea.map((v) => (
         <Category
           key={v.id}
-          active={AgeData === v.id}
-          onClick={() => onAgeSelect(v.id)}
+          active={AreaData === v.id}
+          onClick={() => onAreaSelect(v.id)}
         >
           [ {v.name} ]
         </Category>
@@ -92,4 +124,4 @@ const AgeSide = ({ onAgeSelect, AgeData }) => {
   );
 };
 
-export default AgeSide;
+export default AreaSide;

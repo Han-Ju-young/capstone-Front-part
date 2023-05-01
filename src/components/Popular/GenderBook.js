@@ -19,7 +19,7 @@ const GenderBook = ({ category }) => {
 
   const getData1 = async () => {
     const res = await fetch(
-      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&gender=1"
+      "https://api.look-book.site/recommendation/popularity/woman"
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {
@@ -35,7 +35,7 @@ const GenderBook = ({ category }) => {
   };
   const getData2 = async () => {
     const res = await fetch(
-      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&gender=0"
+      "https://api.look-book.site/recommendation/popularity/man"
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {

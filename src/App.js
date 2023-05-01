@@ -13,6 +13,7 @@ import DetailBook from "./components/Detail/DetailBook";
 // import MyPage from "./pages/MyPage";
 import MainPage from "./pages/MainPage";
 import DetailNaruBook from "./components/Detail/DetailNaruBook";
+import DetailSearchBook from "./components/Detail/DetailSearchBook";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/review" element={<Review />} />
           <Route path="/detail" element={<DetailBook />} />
           <Route path="/narudetail" element={<DetailNaruBook />} />
+          <Route path="searchdetail" element={<DetailSearchBook />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sologin" element={<SoLogin />} />
 

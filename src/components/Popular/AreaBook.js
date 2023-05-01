@@ -4,7 +4,7 @@ import AreaSide from "./AreaSide";
 
 const AreaBook = ({ category }) => {
   const [data, setData] = useState([]);
-  const [AreaData, setAreaDate] = useState("11");
+  const [AreaData, setAreaDate] = useState("seoul");
   const onAreaSelect = useCallback((AreaData) => setAreaDate(AreaData), []);
 
   useEffect(() => {
@@ -14,8 +14,7 @@ const AreaBook = ({ category }) => {
   console.log(AreaData);
   const getData = async () => {
     const res = await fetch(
-      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&region=" +
-        AreaData
+      "https://api.look-book.site/recommendation/popularity/" + AreaData
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {

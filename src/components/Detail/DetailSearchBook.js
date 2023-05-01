@@ -5,7 +5,7 @@ import SimilarBook from "./SimilarBook";
 import AreaSide from "./AreaSide";
 import LibraryBook from "./LibraryBook";
 
-const DetailNaruBook = () => {
+const DetailSearchBook = () => {
   const coverStyle = {
     width: "200px",
     height: "280px",
@@ -16,6 +16,7 @@ const DetailNaruBook = () => {
   };
   const divStyle = {
     marginBottom: "10px",
+    marginTop: "20px",
     borderBottom: "5px solid #22b8cf",
   };
   const buttonStyle = {
@@ -23,6 +24,7 @@ const DetailNaruBook = () => {
     border: "none",
     color: "white",
     height: "30px",
+    marginLeft: "50px",
   };
   const pStyle = {
     fontSize: "30px",
@@ -90,58 +92,46 @@ const DetailNaruBook = () => {
 
   return (
     <div>
-      <div style={divStyle}>
-        <table>
+      <div>
+        <table style={{ width: "100%" }}>
           <tbody>
-            {userInfo.cover.length !== 0 ? (
-              <tr>
-                <td rowSpan={2}>
-                  <img
-                    src={userInfo.cover}
-                    alt="bookCover"
-                    style={coverStyle}
-                  />
-                </td>
-                <td style={titleStyle}>{userInfo.title}</td>
-                <td
-                  style={{
-                    textAlign: "right",
-                  }}
-                >
-                  <button style={buttonStyle} onClick={() => navigate(-1)}>
-                    {"< 이전으로"}
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              <tr>
-                <td rowSpan={2}>
-                  <img
-                    src={"images/DefaultImage.png"}
-                    alt="bookCover"
-                    style={coverStyle}
-                  />
-                </td>
-                <td style={titleStyle}>{userInfo.title}</td>
-                <td
-                  style={{
-                    textAlign: "right",
-                  }}
-                >
-                  <button style={buttonStyle} onClick={() => navigate(-1)}>
-                    {"< 이전으로"}
-                  </button>
-                </td>
-              </tr>
-            )}
             <tr>
-              <td colSpan={2} style={{ width: "100%" }}>
+              <td rowSpan={4} style={{ width: "250px" }}>
+                <img src={userInfo.cover} alt="bookCover" style={coverStyle} />
+              </td>
+              <td style={titleStyle}>{userInfo.title}</td>
+              <td
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <button style={buttonStyle} onClick={() => navigate(-1)}>
+                  {"< 이전으로"}
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={2}>
                 {userInfo.author} | {userInfo.publisher} | {userInfo.pubDate}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan={3}>
+                가격: {userInfo.discount}
+                <button
+                  style={buttonStyle}
+                  onClick={() => {
+                    window.open(userInfo.link);
+                  }}
+                >
+                  도서 구매하기
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div style={divStyle}>{userInfo.description}</div>
 
       <div>
         {data.length !== 0 ? (
@@ -179,4 +169,4 @@ const DetailNaruBook = () => {
     </div>
   );
 };
-export default DetailNaruBook;
+export default DetailSearchBook;

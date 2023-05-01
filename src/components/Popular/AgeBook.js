@@ -4,7 +4,7 @@ import NaruBookList from "../../pages/NaruBookList";
 
 const AgeBook = ({ category }) => {
   const [data, setData] = useState([]);
-  const [AgeData, setAgeDate] = useState("0");
+  const [AgeData, setAgeDate] = useState("infant");
   const onAgeSelect = useCallback((AgeData) => setAgeDate(AgeData), []);
 
   useEffect(() => {
@@ -13,8 +13,7 @@ const AgeBook = ({ category }) => {
 
   const getData = async () => {
     const res = await fetch(
-      "https://api.look-book.site/recommendation/popularity?pageNo=1&pageSize=10&age=" +
-        AgeData
+      "https://api.look-book.site/recommendation/popularity/" + AgeData
     ).then((res) => res.json());
     const initData = res.response.docs.map((it) => {
       return {

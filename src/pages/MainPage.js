@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BsBook } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Main = styled.div`
   display: flex;
@@ -31,6 +32,16 @@ const buttonStyle = {
   color: "white",
   height: "30px",
 };
+const coverStyle = {
+  width: "240px",
+  height: "330px",
+  marginRight: "20px",
+};
+const buttonsty = {
+  backgroundColor: "white",
+  border: "none",
+  marginRight: "20px",
+};
 
 function MainPage() {
   const [bestSellers, setBestSellers] = useState([]);
@@ -48,6 +59,22 @@ function MainPage() {
   const [accessToken, setAccessToken] = useState(
     "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTk4OTgxOX0.SQGmixjGYM8LBjY6pHqhmFYkFG_JJVrv4gXGX9q5Bpk"
   );
+  const navigate = useNavigate();
+  const navigateToPurchase = (el) => {
+    navigate("/searchdetail", {
+      state: {
+        cover: `${el.image}`,
+        title: `${el.title}`,
+        author: `${el.author}`,
+        publisher: `${el.publisher}`,
+        pubDate: `${el.pubdate}`,
+        description: `${el.description}`,
+        discount: `${el.discount}`,
+        link: `${el.link}`,
+        isbn: `${el.isbn}`,
+      },
+    });
+  };
 
   useEffect(() => {
     getBestSellers();
@@ -63,7 +90,6 @@ function MainPage() {
       url: `https://api.look-book.site/recommendation/bestseller`,
     })
       .then((response) => {
-        console.log("/recommendation/bestseller response : ", response);
         setBestSellers(response.data.item);
       })
       .catch((error) => {
@@ -112,54 +138,55 @@ function MainPage() {
         console.log("/book/{isbn}/review error : ", error);
       });
   };
+  console.log(searchReviews);
 
   return (
     <Main>
+      <SearchSection>
+        <Form>
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlInput1"
+            style={{ display: "flex" }}
+          >
+            <Form.Label
+              style={{
+                width: "150px",
+                display: "flex",
+                alignItems: "center",
+                marginTop: "10px",
+              }}
+            >
+              도서 검색
+            </Form.Label>
+            <Form.Control
+              type="text"
+              value={searchValue}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+              }}
+              placeholder="검색할 도서명 입력"
+            />
+            <button
+              onClick={(e) => {
+                searchBook();
+                setIsItSearch(true);
+                e.preventDefault();
+              }}
+              style={{
+                width: "100px",
+                ...buttonStyle,
+                marginTop: "5px",
+                marginLeft: "10px",
+              }}
+            >
+              검색
+            </button>
+          </Form.Group>
+        </Form>
+      </SearchSection>
       {!isItSearch ? (
         <>
-          <SearchSection>
-            <Form>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-                style={{ display: "flex" }}
-              >
-                <Form.Label
-                  style={{
-                    width: "150px",
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "10px",
-                  }}
-                >
-                  도서 검색
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  value={searchValue}
-                  onChange={(e) => {
-                    setSearchValue(e.target.value);
-                  }}
-                  placeholder="도서를 검색해주세요"
-                />
-                <button
-                  onClick={(e) => {
-                    searchBook();
-                    setIsItSearch(true);
-                    e.preventDefault();
-                  }}
-                  style={{
-                    width: "100px",
-                    ...buttonStyle,
-                    marginTop: "5px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  검색
-                </button>
-              </Form.Group>
-            </Form>
-          </SearchSection>
           <Container style={{ marginTop: "5vh" }}>
             <div style={{ textAlign: "center" }}>
               <h1>금주의 베스트셀러 TOP 10</h1>
@@ -170,15 +197,24 @@ function MainPage() {
                   <Col key={idx}>
                     <Card
                       style={{
-                        width: "220px",
-                        height: "430px",
-                        marginBottom: "50px",
+                        marginBottom: "20px",
                         border: "none",
                       }}
                     >
-                      <Card.Img variant="top" src={bestSeller.cover} />
-                      <Card.Body>
-                        <Card.Title>{bestSeller.title}</Card.Title>
+                      <Card.Img
+                        style={{
+                          width: "240px",
+                          height: "330px",
+                        }}
+                        variant="top"
+                        src={bestSeller.cover}
+                      />
+                      <Card.Body
+                        style={{
+                          fontSize: "18px",
+                        }}
+                      >
+                        {bestSeller.title}
                         {/* <Card.Text>
                                 Some quick example text to build on the card title and make up the
                                 bulk of the card's content.
@@ -291,60 +327,32 @@ function MainPage() {
         </>
       ) : (
         <>
-          <SearchSection>
-            <Form>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-                style={{ display: "flex" }}
-              >
-                <Form.Label
-                  style={{
-                    width: "150px",
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "10px",
-                  }}
-                >
-                  도서 검색
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  value={searchValue}
-                  onChange={(e) => {
-                    setSearchValue(e.target.value);
-                  }}
-                  placeholder="도서를 검색해주세요"
-                />
-                <button
-                  onClick={(e) => {
-                    searchBook();
-                    setIsItSearch(true);
-                    e.preventDefault();
-                  }}
-                  style={{
-                    width: "100px",
-                    ...buttonStyle,
-                    marginTop: "5px",
-                    marginLeft: "10px",
-                  }}
-                >
-                  검색
-                </button>
-              </Form.Group>
-            </Form>
-          </SearchSection>
           <Container style={{ marginTop: "10vh" }}>
             <Row>
               {searchReviews.map((el, idx) => {
                 return (
                   <Col key={idx}>
-                    <Card style={{ width: "18rem" }}>
-                      <Card.Img
-                        variant="top"
-                        src={el.image}
-                        style={{ width: "200px" }}
-                      />
+                    <Card
+                      style={{
+                        width: "264px",
+                        height: "490px",
+                        border: "none",
+                        display: "left",
+                      }}
+                    >
+                      <button
+                        style={buttonsty}
+                        onClick={() => navigateToPurchase(el)}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={el.image}
+                          alt="bookCover"
+                          style={coverStyle}
+                          onClick={() => {}}
+                        />
+                      </button>
+
                       <Card.Body>
                         <Card.Title>{el.title}</Card.Title>
                       </Card.Body>
