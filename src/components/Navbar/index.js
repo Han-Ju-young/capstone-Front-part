@@ -43,6 +43,7 @@ const Navbar = ({ toggle, isLog, setLog }) => {
             ) : (
               <div>
                 <NavBtnLink onClick={setLog}>LOG OUT TEST</NavBtnLink>
+                <NavBtnLink to="/mypage">MyPage</NavBtnLink>
               </div>
             )}
           </NavBtn>

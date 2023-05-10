@@ -1,45 +1,110 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
-import ReviewWrite from "./ReviewWrite";
 import Modal from "react-modal";
-import "./review.css";
 
-const buttonStyle = {
-  backgroundColor: "#22b8cf",
-  border: "none",
-  color: "white",
-  height: "30px",
-};
+const Main = styled.div`
+  width: 60vw;
+  .header {
+    display: flex;
+    margin-left: 5vw;
+  }
+  .header h3 {
+    display: flex;
+    flex: 0.4 auto;
+  }
 
-function Review() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  .menus {
+    display: flex;
+    align-items: center;
+  }
+  .main-menus {
+    display: flex;
+    align-items: center;
+    flex: 0.4 auto;
+    font-size: 15px;
+    justify-content: space-around;
+  }
+  .login-menus {
+    display: flex;
+    align-items: center;
+    flex: 0.2 auto;
+    justify-content: center;
+    justify-content: space-around;
+  }
+
+  .main-contents {
+    margin: 4vh 5vw 3vh 5vw;
+  }
+  .main-contents-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main-contents-header div {
+    display: flex;
+    align-items: center;
+  }
+
+  .main-contents-reviews {
+  }
+
+  .row-review-info {
+    background-color: #f2f2f2;
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .row-review-info img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .row-review {
+    display: flex;
+    flex-direction: column;
+    flex: 0.8 auto;
+    padding: 10px;
+  }
+
+  .row-rivew-like {
+    display: flex;
+    flex: 0.2 auto;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+  }
+
+  #review-text {
+    margin-top: 20px;
+  }
+
+  .page-move {
+    /* position: fixed;
+  bottom: 10vh; */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
+function LikedReview() {
   const [pageNum, setPageNum] = useState(0);
   const [reviews, setReview] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMTc3Mn0.AvleVZd2ZLb3Tz5UYC_xzDwJiO6r1urVfKPz0AmLfFU"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMjYxNH0.fShSDZH4Eh6_cuHbm6DYEeM0srFf6FoQ1kg17MeZLzg"
   );
 
   useEffect(() => {
-    getReviews();
+    getLikedReviews();
   }, []);
 
-  useEffect(() => {
-    getReviews();
-  }, [pageNum]);
-  useEffect(() => {
-    getReviews();
-  }, [isModalOpen]);
-
-  const getReviews = async () => {
-    console.log(
-      "url : ",
-      `https://api.look-book.site/book/9788936433673/review?page=${pageNum}`
-    );
+  const getLikedReviews = () => {
     axios({
       method: "GET",
-      url: `https://api.look-book.site/book/9788936433673/review?page=${pageNum}`,
+      url: `https://api.look-book.site/member/likes?page=${pageNum}`,
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정
@@ -55,64 +120,11 @@ function Review() {
       });
   };
 
-  const clickLikeBtn = (reviewId, isItClickedLikeBtn) => {
-    console.log("Authorization : " + `Bearer ${accessToken}`);
-    if (!isItClickedLikeBtn) {
-      axios({
-        method: "POST",
-        url: `https://api.look-book.site/review/${reviewId}/like`,
-        headers: {
-          // 요청 헤더 설정
-          "Content-Type": "application/json", // Content-Type 설정
-          Authorization: `Bearer ${accessToken}`, // Authorization 설정
-        },
-      })
-        .then((response) => {
-          console.log("review/${reviewId}/like response : ", response);
-        })
-        .catch((error) => {
-          console.log("review/${reviewId}/like error : ", error);
-        });
-    } else {
-      axios({
-        method: "DELETE",
-        url: `https://api.look-book.site/review/${reviewId}/like`,
-        headers: {
-          // 요청 헤더 설정
-          "Content-Type": "application/json", // Content-Type 설정
-          Authorization: `Bearer ${accessToken}`, // Authorization 설정
-        },
-      })
-        .then((response) => {
-          console.log("response : ", response);
-        })
-        .catch((error) => {
-          console.log(" : ", error);
-        });
-    }
-  };
-
   return (
-    <>
+    <Main>
       <section className="main-contents">
         <div className="main-contents-header">
-          <h1>리뷰 한줄평</h1>
-          <div>
-            <button
-              style={{
-                width: "100px",
-                height: "30px",
-                border: "none",
-                backgroundColor: "skyblue",
-                ...buttonStyle,
-              }}
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              리뷰 작성
-            </button>
-          </div>
+          <h1>찜한 리뷰</h1>
         </div>
         {reviews.map((review) => {
           return (
@@ -147,11 +159,11 @@ function Review() {
                 <button
                   style={{
                     borderStyle: "none",
-                    color: `${review.liked ? "red" : ""}`,
+                    color: "red",
                   }}
                   onClick={() => {
-                    clickLikeBtn(review.no, review.liked);
-                    getReviews();
+                    // clickLikeBtn(review.no, review.liked);
+                    // getReviews();
                   }}
                   className="row-rivew-like"
                 >
@@ -177,15 +189,8 @@ function Review() {
           }}
         >{`>`}</div>
       </div>
-      <Modal isOpen={isModalOpen}>
-        <ReviewWrite
-          isModalClose={() => {
-            setIsModalOpen(false);
-          }}
-        />
-      </Modal>
-    </>
+    </Main>
   );
 }
 
-export default Review;
+export default LikedReview;

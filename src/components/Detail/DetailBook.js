@@ -11,6 +11,7 @@ const DetailBook = () => {
   };
   const titleStyle = {
     fontSize: "30px",
+    width: "1100px",
   };
   const divStyle = {
     marginBottom: "10px",
@@ -64,6 +65,7 @@ const DetailBook = () => {
     });
     setData(() => initData);
   };
+
   const getLiData = async () => {
     const res = await fetch(
       "https://api.look-book.site/search/book/" +
@@ -114,7 +116,7 @@ const DetailBook = () => {
               <td colSpan={2}>{userInfo.description}</td>
             </tr>
             <tr>
-              <td colSpan={2}>
+              <td>
                 <button
                   style={buttonStyle}
                   onClick={() => {
@@ -123,6 +125,9 @@ const DetailBook = () => {
                 >
                   알라딘에서 도서 구매
                 </button>
+              </td>
+              <td>
+                <button style={buttonStyle}>{"북마크"}</button>
               </td>
             </tr>
           </tbody>

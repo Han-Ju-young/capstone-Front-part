@@ -42,22 +42,28 @@ const buttonsty = {
   border: "none",
   marginRight: "20px",
 };
+const cardStyle = {
+  width: "15rem",
+  border: "none",
+  marginRight: "30px",
+  textAlign: "center",
+};
 
 function MainPage() {
   const [bestSellers, setBestSellers] = useState([]);
-  const [weekBestCategory, setWeekBestCategory] = useState([
-    "분야",
-    "나이",
-    "성별",
-    "지역",
-  ]);
+  const [fieldSellers, setFieldSellers] = useState([]);
+  const [ageSellers, setAgeSellers] = useState([]);
+  const [womanSellers, setWomanSellers] = useState([]);
+  const [manSellers, setManSellers] = useState([]);
+  const [areaSellers, setAreaSellers] = useState([]);
   const [reviews, setReviews] = useState([]);
+
   const [pageNum, setPageNum] = useState(0);
   const [isItSearch, setIsItSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [searchReviews, setSearchReviews] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzE5MTUzMTY5Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MTk4OTgxOX0.SQGmixjGYM8LBjY6pHqhmFYkFG_JJVrv4gXGX9q5Bpk"
+    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMTc3Mn0.AvleVZd2ZLb3Tz5UYC_xzDwJiO6r1urVfKPz0AmLfFU"
   );
   const navigate = useNavigate();
   const navigateToPurchase = (el) => {
@@ -76,8 +82,28 @@ function MainPage() {
     });
   };
 
+  const PopnavigateToPurchase = (item) => {
+    navigate("/detail", {
+      state: {
+        cover: `${item.cover}`,
+        title: `${item.title}`,
+        author: `${item.author}`,
+        publisher: `${item.publisher}`,
+        pubDate: `${item.pubDate}`,
+        description: `${item.description}`,
+        link: `${item.link}`,
+        isbn: `${item.isbn13}`,
+      },
+    });
+  };
+
   useEffect(() => {
     getBestSellers();
+    getFieldSellers();
+    getAgeSellers();
+    getWomanSellers();
+    getManSellers();
+    getAreaSellers();
     getReviews();
   }, []);
   useEffect(() => {
@@ -91,17 +117,75 @@ function MainPage() {
     })
       .then((response) => {
         setBestSellers(response.data.item);
+        console.log(response.data.item);
       })
       .catch((error) => {
-        console.log("/recommendation/bestseller erorr : ", error);
+        console.log("/recommendation/bestseller error : ", error);
+      });
+  };
+
+  const getFieldSellers = () => {
+    axios({
+      method: "GET",
+      url: `https://api.look-book.site/recommendation/genre?category=2105`,
+    })
+      .then((response) => {
+        setFieldSellers(response.data.item[0]);
+      })
+      .catch((error) => {
+        console.log("/recommendation/genre error : ", error);
+      });
+  };
+  const getAgeSellers = () => {
+    axios({
+      method: "GET",
+      url: `https://api.look-book.site/recommendation/popularity/twenties`,
+    })
+      .then((response) => {
+        setAgeSellers(response.data.response.docs[0].doc);
+      })
+      .catch((error) => {
+        console.log("/recommendation/genre error : ", error);
+      });
+  };
+  const getWomanSellers = () => {
+    axios({
+      method: "GET",
+      url: `https://api.look-book.site/recommendation/popularity/woman`,
+    })
+      .then((response) => {
+        setWomanSellers(response.data.response.docs[0].doc);
+      })
+      .catch((error) => {
+        console.log("/recommendation/genre error : ", error);
+      });
+  };
+  const getManSellers = () => {
+    axios({
+      method: "GET",
+      url: `https://api.look-book.site/recommendation/popularity/man`,
+    })
+      .then((response) => {
+        setManSellers(response.data.response.docs[0].doc);
+      })
+      .catch((error) => {
+        console.log("/recommendation/genre error : ", error);
+      });
+  };
+  const getAreaSellers = () => {
+    axios({
+      method: "GET",
+      url: `https://api.look-book.site/recommendation/popularity/seoul`,
+    })
+      .then((response) => {
+        setAreaSellers(response.data.response.docs[0].doc);
+      })
+      .catch((error) => {
+        console.log("/recommendation/genre error : ", error);
       });
   };
 
   const getReviews = async () => {
-    console.log(
-      "url : ",
-      `https://api.look-book.site/book/9788936433673/review?page=${pageNum}&size=4`
-    );
     axios({
       method: "GET",
       url: `https://api.look-book.site/book/9788936433673/review?page=${pageNum}&size=4`,
@@ -112,7 +196,6 @@ function MainPage() {
       },
     })
       .then((response) => {
-        console.log("/book/{isbn}/review response : ", response);
         setReviews(response.data.content);
       })
       .catch((error) => {
@@ -138,7 +221,6 @@ function MainPage() {
         console.log("/book/{isbn}/review error : ", error);
       });
   };
-  console.log(searchReviews);
 
   return (
     <Main>
@@ -206,6 +288,7 @@ function MainPage() {
                           width: "240px",
                           height: "330px",
                         }}
+                        onClick={() => PopnavigateToPurchase(bestSeller)}
                         variant="top"
                         src={bestSeller.cover}
                       />
@@ -215,10 +298,6 @@ function MainPage() {
                         }}
                       >
                         {bestSeller.title}
-                        {/* <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
-                      </Card.Text> */}
                       </Card.Body>
                     </Card>
                   </Col>
@@ -228,21 +307,100 @@ function MainPage() {
           </Container>
           <Container style={{ marginTop: "15vh" }}>
             <div style={{ textAlign: "center" }}>
-              <h1>분야, 나이, 성별, 지역 베스트 셀러</h1>
+              <h1>분야, 연령, 성별, 지역 베스트 셀러</h1>
             </div>
-            <Row style={{ marginTop: "5vh" }}>
-              {weekBestCategory.map((category, idx) => {
-                return (
-                  <Col key={idx}>
-                    <Card style={{ width: "18rem", textAlign: "center" }}>
-                      <Card.Body>
-                        <Card.Title>{category}</Card.Title>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                );
-              })}
-            </Row>
+            <div style={{ display: "flex" }}>
+              <Card
+                style={cardStyle}
+                onClick={() => {
+                  navigate("/popular", {
+                    state: {
+                      category: "best",
+                    },
+                  });
+                }}
+              >
+                <Card.Title>고전 분야 인기도서</Card.Title>
+                <Card.Img
+                  style={{
+                    width: "250px",
+                    height: "330px",
+                  }}
+                  variant="top"
+                  src={fieldSellers.cover}
+                />
+                <Card.Title>{fieldSellers.title}</Card.Title>
+              </Card>
+              <Card
+                style={cardStyle}
+                onClick={() => {
+                  navigate("/popular");
+                }}
+              >
+                <Card.Title>20대 인기도서</Card.Title>
+                <Card.Img
+                  style={{
+                    width: "250px",
+                    height: "330px",
+                  }}
+                  variant="top"
+                  src={ageSellers.bookImageURL}
+                />
+                <Card.Title>{ageSellers.bookname}</Card.Title>
+              </Card>
+
+              <Card
+                style={cardStyle}
+                onClick={() => {
+                  navigate("/popular");
+                }}
+              >
+                <Card.Title>여성독자 인기도서</Card.Title>
+                <Card.Img
+                  style={{
+                    width: "250px",
+                    height: "330px",
+                  }}
+                  variant="top"
+                  src={womanSellers.bookImageURL}
+                />
+                <Card.Title>{womanSellers.bookname}</Card.Title>
+              </Card>
+              <Card
+                style={cardStyle}
+                onClick={() => {
+                  navigate("/popular");
+                }}
+              >
+                <Card.Title>남성독자 인기도서</Card.Title>
+                <Card.Img
+                  style={{
+                    width: "250px",
+                    height: "330px",
+                  }}
+                  variant="top"
+                  src={manSellers.bookImageURL}
+                />
+                <Card.Title>{manSellers.bookname}</Card.Title>
+              </Card>
+              <Card
+                style={cardStyle}
+                onClick={() => {
+                  navigate("/popular");
+                }}
+              >
+                <Card.Title>서울 지역 인기도서</Card.Title>
+                <Card.Img
+                  style={{
+                    width: "250px",
+                    height: "330px",
+                  }}
+                  variant="top"
+                  src={areaSellers.bookImageURL}
+                />
+                <Card.Title>{areaSellers.bookname}</Card.Title>
+              </Card>
+            </div>
           </Container>
           <Container style={{ marginTop: "15vh" }}>
             <div style={{ textAlign: "center" }}>

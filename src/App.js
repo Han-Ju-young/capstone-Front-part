@@ -10,7 +10,7 @@ import Header from "./pages/Header";
 import Login from "./components/Login/Login";
 import SoLogin from "./components/Login/SoLogin";
 import DetailBook from "./components/Detail/DetailBook";
-// import MyPage from "./pages/MyPage";
+import MyPage from "./pages/MyPage";
 import MainPage from "./pages/MainPage";
 import DetailNaruBook from "./components/Detail/DetailNaruBook";
 import DetailSearchBook from "./components/Detail/DetailSearchBook";
@@ -27,15 +27,14 @@ const App = () => {
           <Route path="/review" element={<Review />} />
           <Route path="/detail" element={<DetailBook />} />
           <Route path="/narudetail" element={<DetailNaruBook />} />
-          <Route path="searchdetail" element={<DetailSearchBook />} />
+          <Route path="/searchdetail" element={<DetailSearchBook />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sologin" element={<SoLogin />} />
-
+          <Route path="mypage" element={<MyPage />} />
           <Route path="/mainpage" element={<MainPage />} />
         </Routes>
       </div>
     </BrowserRouter>
   );
 };
-// <Route path="/mypage" element={<MyPage />} />
 export default App;

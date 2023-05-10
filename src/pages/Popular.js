@@ -5,7 +5,7 @@ import Categories from "../components/Popular/Categories";
 import AgeBook from "../components/Popular/AgeBook";
 import GenderBook from "../components/Popular/GenderBook";
 import AreaBook from "../components/Popular/AreaBook";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Popular = () => {
   const buttonStyle = {
@@ -17,7 +17,6 @@ const Popular = () => {
   const [category, setCategory] = useState("best");
   const onSelect = useCallback((Category) => setCategory(Category), []);
   const navigate = useNavigate();
-
   return (
     <div>
       <h1>베스트셀러</h1>
