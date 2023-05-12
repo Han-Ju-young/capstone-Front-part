@@ -63,7 +63,7 @@ function MainPage() {
   const [searchValue, setSearchValue] = useState("");
   const [searchReviews, setSearchReviews] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMTc3Mn0.AvleVZd2ZLb3Tz5UYC_xzDwJiO6r1urVfKPz0AmLfFU"
+    localStorage.getItem("accessToken")
   );
   const navigate = useNavigate();
   const navigateToPurchase = (el) => {
@@ -117,7 +117,6 @@ function MainPage() {
     })
       .then((response) => {
         setBestSellers(response.data.item);
-        console.log(response.data.item);
       })
       .catch((error) => {
         console.log("/recommendation/bestseller error : ", error);
@@ -214,7 +213,6 @@ function MainPage() {
       },
     })
       .then((response) => {
-        console.log("/search/book?title: ", response);
         setSearchReviews(response.data.items);
       })
       .catch((error) => {
@@ -313,9 +311,9 @@ function MainPage() {
               <Card
                 style={cardStyle}
                 onClick={() => {
-                  navigate("/popular", {
+                  navigate("/popularbook", {
                     state: {
-                      category: "best",
+                      category: "field",
                     },
                   });
                 }}
@@ -334,7 +332,11 @@ function MainPage() {
               <Card
                 style={cardStyle}
                 onClick={() => {
-                  navigate("/popular");
+                  navigate("/popularbook", {
+                    state: {
+                      category: "age",
+                    },
+                  });
                 }}
               >
                 <Card.Title>20대 인기도서</Card.Title>
@@ -352,7 +354,11 @@ function MainPage() {
               <Card
                 style={cardStyle}
                 onClick={() => {
-                  navigate("/popular");
+                  navigate("/popularbook", {
+                    state: {
+                      category: "gender",
+                    },
+                  });
                 }}
               >
                 <Card.Title>여성독자 인기도서</Card.Title>
@@ -369,7 +375,11 @@ function MainPage() {
               <Card
                 style={cardStyle}
                 onClick={() => {
-                  navigate("/popular");
+                  navigate("/popularbook", {
+                    state: {
+                      category: "gender",
+                    },
+                  });
                 }}
               >
                 <Card.Title>남성독자 인기도서</Card.Title>
@@ -386,7 +396,11 @@ function MainPage() {
               <Card
                 style={cardStyle}
                 onClick={() => {
-                  navigate("/popular");
+                  navigate("/popularbook", {
+                    state: {
+                      category: "area",
+                    },
+                  });
                 }}
               >
                 <Card.Title>서울 지역 인기도서</Card.Title>

@@ -1,14 +1,13 @@
 import React, { useState, useCallback } from "react";
-import BestBook from "../components/Popular/BestBook";
-import FieldBook from "../components/Popular/FieldBook";
-import Categories from "../components/Popular/Categories";
-import AgeBook from "../components/Popular/AgeBook";
-import GenderBook from "../components/Popular/GenderBook";
-import AreaBook from "../components/Popular/AreaBook";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import BestBook from "./BestBook";
+import FieldBook from "./FieldBook";
+import Categories from "./Categories";
+import AgeBook from "./AgeBook";
+import GenderBook from "./GenderBook";
+import AreaBook from "./AreaBook";
+import { useNavigate } from "react-router-dom";
 
-const Popular = () => {
+const PopularBook = () => {
   const buttonStyle = {
     backgroundColor: "#22b8cf",
     border: "none",
@@ -16,18 +15,9 @@ const Popular = () => {
     height: "30px",
   };
 
-  const location = useLocation();
-  const userInfo = { ...location.state };
   const [category, setCategory] = useState("best");
   const onSelect = useCallback((Category) => setCategory(Category), []);
   const navigate = useNavigate();
-  const getCategory = () => {
-    setCategory(userInfo.category);
-  };
-
-  useEffect(() => {
-    getCategory();
-  }, []);
 
   return (
     <div>
@@ -79,4 +69,4 @@ const Popular = () => {
     </div>
   );
 };
-export default Popular;
+export default PopularBook;

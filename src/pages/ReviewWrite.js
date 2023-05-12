@@ -60,7 +60,7 @@ const ReviewWrite = (props) => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const [score, setScore] = useState(0);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMTc3Mn0.AvleVZd2ZLb3Tz5UYC_xzDwJiO6r1urVfKPz0AmLfFU"
+    localStorage.getItem("accessToken")
   );
 
   useEffect(() => {

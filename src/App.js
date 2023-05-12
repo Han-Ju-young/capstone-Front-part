@@ -14,6 +14,7 @@ import MyPage from "./pages/MyPage";
 import MainPage from "./pages/MainPage";
 import DetailNaruBook from "./components/Detail/DetailNaruBook";
 import DetailSearchBook from "./components/Detail/DetailSearchBook";
+import PopularBook from "./components/Popular/PopularBook";
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/popular" element={<Popular />} />
+          <Route path="popular" element={<PopularBook />} />
+          <Route path="/popularbook" element={<Popular />} />
           <Route path="/aibook" element={<AiBook />} />
           <Route path="/review" element={<Review />} />
           <Route path="/detail" element={<DetailBook />} />

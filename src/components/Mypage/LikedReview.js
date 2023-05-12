@@ -94,7 +94,7 @@ function LikedReview() {
   const [pageNum, setPageNum] = useState(0);
   const [reviews, setReview] = useState([]);
   const [accessToken, setAccessToken] = useState(
-    "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzA2OTQ3MDQ2Iiwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MzYxMjYxNH0.fShSDZH4Eh6_cuHbm6DYEeM0srFf6FoQ1kg17MeZLzg"
+    localStorage.getItem("accessToken")
   );
 
   useEffect(() => {
