@@ -8,8 +8,14 @@ import {
   SidebarWrapper,
   SideBtnWrap,
 } from "./SidebarElements";
+import { useDispatch } from "react-redux";
+import {
+  indexReducer_LogIn,
+  indexReducer_LogOut,
+} from "../../store/actions/indexAction";
 
 const Sidebar = ({ isOpen, toggle, isLog }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <SidebarContainer isOpen={isOpen} onClick={toggle}>
@@ -33,9 +39,21 @@ const Sidebar = ({ isOpen, toggle, isLog }) => {
           </SidebarMenu>
           <SideBtnWrap>
             {!isLog ? (
-              <SidebarRoute to="/login">LOG IN TEST</SidebarRoute>
+              <SidebarRoute
+                to="/login"
+                onClick={() => {
+                  dispatch(indexReducer_LogIn());
+                }}
+              >
+                LOG IN TEST
+              </SidebarRoute>
             ) : (
-              <SidebarRoute onClick={localStorage.removeItem("accessToken")}>
+              <SidebarRoute
+                onClick={() => {
+                  localStorage.removeItem("accessToken");
+                  dispatch(indexReducer_LogOut());
+                }}
+              >
                 LOG OUT TEST
               </SidebarRoute>
             )}

@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 import Modal from "react-modal";
 
 const Main = styled.div`
-  width: 60vw;
+  width: 85vw;
   .header {
     display: flex;
     margin-left: 5vw;
@@ -59,7 +59,7 @@ const Main = styled.div`
 
   .row-review-info img {
     width: 100px;
-    height: 100px;
+    height: 120px;
   }
 
   .row-review {

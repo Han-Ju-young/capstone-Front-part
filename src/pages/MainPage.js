@@ -34,7 +34,7 @@ const buttonStyle = {
 };
 const coverStyle = {
   width: "240px",
-  height: "330px",
+  height: "310px",
   marginRight: "20px",
 };
 const buttonsty = {
@@ -187,7 +187,7 @@ function MainPage() {
   const getReviews = async () => {
     axios({
       method: "GET",
-      url: `https://api.look-book.site/book/9788936433673/review?page=${pageNum}&size=4`,
+      url: `https://api.look-book.site/reviews?page=${pageNum}&size=5`,
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정
@@ -452,10 +452,7 @@ function MainPage() {
               >
                 {reviews.map((el, idx) => {
                   return (
-                    <Card
-                      key={idx}
-                      style={{ width: "200px", textAlign: "center" }}
-                    >
+                    <Card style={cardStyle} key={idx}>
                       <Card.Body>
                         <Card.Img variant="top" src={el.bookImgUrl} />
                         <Card.Title>{el.contents}</Card.Title>
@@ -524,7 +521,6 @@ function MainPage() {
                           onClick={() => {}}
                         />
                       </button>
-
                       <Card.Body>
                         <Card.Title>{el.title}</Card.Title>
                       </Card.Body>

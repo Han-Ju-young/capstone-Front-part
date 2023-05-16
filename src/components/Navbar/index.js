@@ -11,13 +11,19 @@ import {
   NavBtn,
   NavBtnLink,
 } from "./NavbarElements";
+import { useDispatch } from "react-redux";
+import {
+  indexReducer_LogIn,
+  indexReducer_LogOut,
+} from "../../store/actions/indexAction";
 
 const Navbar = ({ toggle, isLog, setLog }) => {
+  const dispatch = useDispatch();
   return (
     <div>
       <Nav>
         <NavbarContainer>
-          <NavLogo to="/">LOGO</NavLogo>
+          <NavLogo to="/">LOOKBOOK</NavLogo>
           <MoblieIcon onClick={toggle}>
             <FaBars />
           </MoblieIcon>
@@ -37,12 +43,23 @@ const Navbar = ({ toggle, isLog, setLog }) => {
           </NavMenu>
           <NavBtn id="loginbtn">
             {!isLog ? (
-              <NavBtnLink to="/login" onClick={setLog}>
-                LOG IN TEST
+              <NavBtnLink
+                to="/login"
+                onClick={() => {
+                  dispatch(indexReducer_LogIn());
+                }}
+              >
+                LOG IN
               </NavBtnLink>
             ) : (
               <div>
-                <NavBtnLink onClick={setLog}>LOG OUT TEST</NavBtnLink>
+                <NavBtnLink
+                  onClick={() => {
+                    dispatch(indexReducer_LogOut());
+                  }}
+                >
+                  LOG OUT
+                </NavBtnLink>
                 <NavBtnLink to="/mypage">MyPage</NavBtnLink>
               </div>
             )}
@@ -52,6 +69,5 @@ const Navbar = ({ toggle, isLog, setLog }) => {
     </div>
   );
 };
-// <p><NavLinks to="/mypage"><AiOutlineUser />마이페이지</NavLinks></p>
 
 export default Navbar;

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
-import ReviewWrite from "./ReviewWrite";
+import ReviewWrite from "../../pages/ReviewWrite";
 import Modal from "react-modal";
-import "./review.css";
+import "../../pages/review.css";
 
 const buttonStyle = {
   backgroundColor: "#22b8cf",
@@ -13,7 +12,7 @@ const buttonStyle = {
   height: "30px",
 };
 
-function Review() {
+function DetailReview({ isbn }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);
   const [reviews, setReview] = useState([]);
@@ -35,7 +34,7 @@ function Review() {
   const getReviews = async () => {
     axios({
       method: "GET",
-      url: `https://api.look-book.site/reviews?page=${pageNum}`,
+      url: `https://api.look-book.site/book/${isbn}/review?page=${pageNum}`,
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정
@@ -92,14 +91,27 @@ function Review() {
       <section className="main-contents">
         <div className="main-contents-header">
           <h1>리뷰 한줄평</h1>
+          <div>
+            <button
+              style={{
+                width: "100px",
+                height: "30px",
+                border: "none",
+                backgroundColor: "skyblue",
+                ...buttonStyle,
+              }}
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              리뷰 작성
+            </button>
+          </div>
         </div>
         {reviews.map((review) => {
           return (
             <div className="main-contents-reviews" key={review.no}>
               <div className="row-review-info">
-                <Link to={`/detail/${review.isbn}`}>
-                  <img src={review.bookImgUrl} />
-                </Link>
                 <div className="row-review">
                   <div>{`${review.memberNickname} ${review.createdAt.slice(
                     0,
@@ -156,6 +168,7 @@ function Review() {
       </div>
       <Modal isOpen={isModalOpen}>
         <ReviewWrite
+          isbn={isbn}
           isModalClose={() => {
             setIsModalOpen(false);
           }}
@@ -165,4 +178,4 @@ function Review() {
   );
 }
 
-export default Review;
+export default DetailReview;

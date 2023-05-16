@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SimilarBook from "./SimilarBook";
 import AreaSide from "./AreaSide";
 import LibraryBook from "./LibraryBook";
+import DetailReview from "./DetailReview";
 
 const DetailNaruBook = () => {
   const coverStyle = {
@@ -142,6 +143,7 @@ const DetailNaruBook = () => {
           </tbody>
         </table>
       </div>
+      <DetailReview isbn={userInfo.isbn} />
 
       <div>
         {data.length !== 0 ? (

@@ -85,7 +85,7 @@ const ReviewWrite = (props) => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const BodyToPost = {
-      isbn: title,
+      isbn: props.isbn,
       contents: bookReview,
       grade: score,
     };
@@ -137,19 +137,6 @@ const ReviewWrite = (props) => {
             props.isModalClose();
           }}
         >
-          <InputGroup className="mb-3">
-            <InputGroup.Text id="basic-addon1" style={{ width: "60px" }}>
-              ISBN
-            </InputGroup.Text>
-            <Form.Control
-              placeholder="ISBN"
-              aria-label="ISBN"
-              aria-describedby="basic-addon1"
-              onChange={handleTitleChange}
-              value={title}
-            />
-          </InputGroup>
-
           <InputGroup className="mb-3">
             <InputGroup.Text
               id="basic-addon1"

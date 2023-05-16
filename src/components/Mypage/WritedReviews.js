@@ -9,7 +9,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Main = styled.div`
-  width: 60vw;
+  width: 85vw;
   .header {
     display: flex;
     margin-left: 5vw;
