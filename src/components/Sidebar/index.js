@@ -50,8 +50,8 @@ const Sidebar = ({ isOpen, toggle, isLog }) => {
             ) : (
               <SidebarRoute
                 onClick={() => {
-                  localStorage.removeItem("accessToken");
                   dispatch(indexReducer_LogOut());
+                  localStorage.removeItem("accessToken");
                 }}
               >
                 LOG OUT TEST

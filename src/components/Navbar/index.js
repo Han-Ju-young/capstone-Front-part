@@ -56,6 +56,7 @@ const Navbar = ({ toggle, isLog, setLog }) => {
                 <NavBtnLink
                   onClick={() => {
                     dispatch(indexReducer_LogOut());
+                    localStorage.removeItem("accessToken");
                   }}
                 >
                   LOG OUT
