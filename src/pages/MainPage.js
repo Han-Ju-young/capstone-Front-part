@@ -415,7 +415,7 @@ function MainPage() {
               </Card>
             </div>
           </Container>
-          <Container style={{ marginTop: "15vh" }}>
+          {/* <Container style={{ marginTop: "15vh" }}>
             <div style={{ textAlign: "center" }}>
               <h1>인공지능 추천도서</h1>
             </div>
@@ -436,7 +436,7 @@ function MainPage() {
                 );
               })}
             </Row>
-          </Container>
+          </Container> */}
           <ReviewSection>
             <div style={{ marginTop: "15vh" }}>
               <div style={{ textAlign: "center" }}>
