@@ -16,7 +16,7 @@ const SideBar = styled.div`
 const MainContents = styled.div``;
 
 function MyPage() {
-  const [clickMenu, setClickMenu] = useState("bookmark");
+  const [clickMenu, setClickMenu] = useState("likedReview");
 
   return (
     <div style={{ display: "flex" }}>
@@ -24,7 +24,7 @@ function MyPage() {
         <div>
           <AiOutlineUser style={{ fontSize: "100px" }} />
         </div>
-        <div
+        {/* <div
           style={{
             marginTop: "10vh",
             color: clickMenu === "bookmark" ? "blue" : "",
@@ -34,7 +34,7 @@ function MyPage() {
           }}
         >
           <h5>북마크</h5>
-        </div>
+        </div> */}
         <div
           style={{
             marginTop: "2vh",
@@ -59,7 +59,7 @@ function MyPage() {
         </div>
       </SideBar>
       <MainContents>
-        {clickMenu === "bookmark" ? <BookMark /> : <></>}
+        {/* {clickMenu === "bookmark" ? <BookMark /> : <></>} */}
         {clickMenu === "likedReview" ? <LikedReview /> : <></>}
         {clickMenu === "writedRivew" ? <WritedReviews /> : <></>}
       </MainContents>
