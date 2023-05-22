@@ -6,7 +6,6 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { BsBook } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 

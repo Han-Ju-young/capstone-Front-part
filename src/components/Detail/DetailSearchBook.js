@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SimilarBook from "./SimilarBook";
 import AreaSide from "./AreaSide";
 import LibraryBook from "./LibraryBook";
+import DetailReview from "./DetailReview";
 
 const DetailSearchBook = () => {
   const coverStyle = {
@@ -90,6 +91,7 @@ const DetailSearchBook = () => {
     setLiDate(() => initDatas);
   };
 
+  console.log(userInfo.isbn);
   return (
     <div>
       <div>
@@ -132,6 +134,7 @@ const DetailSearchBook = () => {
         </table>
       </div>
       <div style={divStyle}>{userInfo.description}</div>
+      <DetailReview isbn={userInfo.isbn} />
 
       <div>
         {data.length !== 0 ? (

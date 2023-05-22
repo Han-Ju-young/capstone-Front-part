@@ -34,7 +34,7 @@ function DetailReview({ isbn }) {
   const getReviews = async () => {
     axios({
       method: "GET",
-      url: `https://api.look-book.site/book/${isbn}/review?page=${pageNum}`,
+      url: `https://api.look-book.site/book/${isbn}/review?page=${pageNum}&size=3`,
       headers: {
         // 요청 헤더 설정
         "Content-Type": "application/json", // Content-Type 설정

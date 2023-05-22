@@ -24,19 +24,16 @@ function MyPage() {
         <div>
           <AiOutlineUser style={{ fontSize: "100px" }} />
         </div>
-        <div style={{ marginTop: "10vh" }}>
-          <h5>라이브러리</h5>
-        </div>
         <div
           style={{
-            marginTop: "2vh",
+            marginTop: "10vh",
             color: clickMenu === "bookmark" ? "blue" : "",
           }}
           onClick={() => {
             setClickMenu("bookmark");
           }}
         >
-          <h6>북마크</h6>
+          <h5>북마크</h5>
         </div>
         <div
           style={{
@@ -47,16 +44,7 @@ function MyPage() {
             setClickMenu("likedReview");
           }}
         >
-          <h6>찜한 리뷰</h6>
-        </div>
-        <div style={{ marginTop: "10vh" }}>
-          <h5>개인정보</h5>
-        </div>
-        <div style={{ marginTop: "2vh" }}>
-          <h6>인공지능 추천 입력</h6>
-        </div>
-        <div style={{ marginTop: "10vh" }}>
-          <h5>활동 내역</h5>
+          <h5>찜한 리뷰</h5>
         </div>
         <div
           style={{
@@ -67,10 +55,7 @@ function MyPage() {
             setClickMenu("writedRivew");
           }}
         >
-          <h6>작성한 리뷰</h6>
-        </div>
-        <div style={{ marginTop: "2vh" }}>
-          <h6>작성한 댓글</h6>
+          <h5>작성한 리뷰</h5>
         </div>
       </SideBar>
       <MainContents>
