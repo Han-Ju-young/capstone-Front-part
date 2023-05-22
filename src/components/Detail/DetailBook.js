@@ -127,9 +127,6 @@ const DetailBook = () => {
                   알라딘에서 도서 구매
                 </button>
               </td>
-              <td>
-                <button style={buttonStyle}>{"북마크"}</button>
-              </td>
             </tr>
           </tbody>
         </table>
