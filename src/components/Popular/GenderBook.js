@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NaruBookList from "../../pages/NaruBookList";
+import NaruBookList from "../BookList/NaruBookList";
 
 const GenderBook = ({ category }) => {
   const [data1, setData1] = useState([]);

@@ -26,10 +26,7 @@ function DetailReview({ isbn }) {
 
   useEffect(() => {
     getReviews();
-  }, [pageNum]);
-  useEffect(() => {
-    getReviews();
-  }, [isModalOpen]);
+  }, [pageNum, isModalOpen]);
 
   const getReviews = async () => {
     axios({
@@ -87,94 +84,178 @@ function DetailReview({ isbn }) {
   };
 
   return (
-    <>
-      <section className="main-contents">
-        <div className="main-contents-header">
-          <h1>리뷰 한줄평</h1>
-          <div>
-            <button
-              style={{
-                width: "100px",
-                height: "30px",
-                border: "none",
-                backgroundColor: "skyblue",
-                ...buttonStyle,
-              }}
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              리뷰 작성
-            </button>
-          </div>
-        </div>
-        {reviews.map((review) => {
-          return (
-            <div className="main-contents-reviews" key={review.no}>
-              <div className="row-review-info">
-                <div className="row-review">
-                  <div>{`${review.memberNickname} ${review.createdAt.slice(
-                    0,
-                    10
-                  )}`}</div>
-                  <div id="review-text">{review.contents}</div>
-                  <div
-                    style={{
-                      display: "flex",
-                    }}
-                  >
-                    <div>
-                      {[...new Array(review.grade)].map((el, idx) => {
-                        return <FaStar style={{ color: "#f4dd09" }} />;
-                      })}
-                    </div>
-                    <div style={{ marginLeft: "20px" }}>
-                      <h5>{review.grade}.0</h5>
-                    </div>
-                  </div>
-                </div>
+    <div>
+      {reviews.length !== 0 ? (
+        <div>
+          <section className="main-contents">
+            <div className="main-contents-header">
+              <h1>리뷰 한줄평</h1>
+              <div>
                 <button
                   style={{
-                    borderStyle: "none",
-                    color: `${review.liked ? "red" : ""}`,
+                    width: "100px",
+                    height: "30px",
+                    border: "none",
+                    backgroundColor: "skyblue",
+                    ...buttonStyle,
                   }}
                   onClick={() => {
-                    clickLikeBtn(review.no, review.liked);
-                    getReviews();
+                    setIsModalOpen(true);
                   }}
-                  className="row-rivew-like"
                 >
-                  ♥
+                  리뷰 작성
                 </button>
               </div>
             </div>
-          );
-        })}
-      </section>
-      <div className="page-move">
-        <div
-          onClick={() => {
-            setPageNum(pageNum - 1);
-          }}
-        >{`<`}</div>
-        <div
-          onClick={() => {
-            setPageNum(pageNum + 1);
-          }}
-          style={{
-            marginLeft: "20px",
-          }}
-        >{`>`}</div>
-      </div>
-      <Modal isOpen={isModalOpen}>
-        <ReviewWrite
-          isbn={isbn}
-          isModalClose={() => {
-            setIsModalOpen(false);
-          }}
-        />
-      </Modal>
-    </>
+            {reviews.map((review) => {
+              return (
+                <div className="main-contents-reviews" key={review.no}>
+                  <div className="row-review-info">
+                    <div className="row-review">
+                      <div>{`${review.memberNickname} ${review.createdAt.slice(
+                        0,
+                        10
+                      )}`}</div>
+                      <div id="review-text">{review.contents}</div>
+                      <div
+                        style={{
+                          display: "flex",
+                        }}
+                      >
+                        <div>
+                          {[...new Array(review.grade)].map((el, idx) => {
+                            return <FaStar style={{ color: "#f4dd09" }} />;
+                          })}
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                          <h5>{review.grade}.0</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      style={{
+                        borderStyle: "none",
+                        color: `${review.liked ? "red" : ""}`,
+                      }}
+                      onClick={() => {
+                        clickLikeBtn(review.no, review.liked);
+                        getReviews();
+                      }}
+                      className="row-rivew-like"
+                    >
+                      ♥
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+          <div className="page-move">
+            <div
+              onClick={() => {
+                setPageNum(pageNum - 1);
+              }}
+            >{`<`}</div>
+            <div
+              onClick={() => {
+                setPageNum(pageNum + 1);
+              }}
+              style={{
+                marginLeft: "20px",
+              }}
+            >{`>`}</div>
+          </div>
+          <Modal isOpen={isModalOpen}>
+            <ReviewWrite
+              isbn={isbn}
+              isModalClose={() => {
+                setIsModalOpen(false);
+              }}
+            />
+          </Modal>
+        </div>
+      ) : (
+        <div>
+          <section className="main-contents">
+            <div className="main-contents-header">
+              <h1>리뷰 한줄평</h1>
+              <div>
+                <button
+                  style={{
+                    width: "100px",
+                    height: "30px",
+                    border: "none",
+                    backgroundColor: "skyblue",
+                    ...buttonStyle,
+                  }}
+                  onClick={() => {
+                    setIsModalOpen(true);
+                  }}
+                >
+                  리뷰 작성
+                </button>
+              </div>
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <h5>아직 작성된 리뷰가 없습니다.</h5>
+              <h5>새로운 리뷰를 작성해보세요.</h5>
+            </div>
+
+            {reviews.map((review) => {
+              return (
+                <div className="main-contents-reviews" key={review.no}>
+                  <div className="row-review-info">
+                    <div className="row-review">
+                      <div>{`${review.memberNickname} ${review.createdAt.slice(
+                        0,
+                        10
+                      )}`}</div>
+                      <div id="review-text">{review.contents}</div>
+                      <div
+                        style={{
+                          display: "flex",
+                        }}
+                      >
+                        <div>
+                          {[...new Array(review.grade)].map((el, idx) => {
+                            return <FaStar style={{ color: "#f4dd09" }} />;
+                          })}
+                        </div>
+                        <div style={{ marginLeft: "20px" }}>
+                          <h5>{review.grade}.0</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      style={{
+                        borderStyle: "none",
+                        color: `${review.liked ? "red" : ""}`,
+                      }}
+                      onClick={() => {
+                        clickLikeBtn(review.no, review.liked);
+                        getReviews();
+                      }}
+                      className="row-rivew-like"
+                    >
+                      ♥
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+
+          <Modal isOpen={isModalOpen}>
+            <ReviewWrite
+              isbn={isbn}
+              isModalClose={() => {
+                setIsModalOpen(false);
+              }}
+            />
+          </Modal>
+        </div>
+      )}
+    </div>
   );
 }
 

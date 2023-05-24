@@ -12,6 +12,14 @@ const SideBar = styled.div`
   /* flex: 0.2 auto; */
   margin-left: 2vw;
 `;
+const PageLink = styled.button`
+  border: none;
+  background: none;
+  font-size: 19px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const MainContents = styled.div``;
 
@@ -33,7 +41,7 @@ function MyPage() {
             setClickMenu("bookmark");
           }}
         >
-          <h5>북마크</h5>
+          <PageLink>북마크</PageLink>
         </div> */}
         <div
           style={{
@@ -44,7 +52,7 @@ function MyPage() {
             setClickMenu("likedReview");
           }}
         >
-          <h5>찜한 리뷰</h5>
+          <PageLink>찜한 리뷰</PageLink>
         </div>
         <div
           style={{
@@ -55,8 +63,15 @@ function MyPage() {
             setClickMenu("writedRivew");
           }}
         >
-          <h5>작성한 리뷰</h5>
+          <PageLink>작성한 리뷰</PageLink>
         </div>
+        {/* <div
+          style={{
+            marginTop: "2vh",
+          }}
+        >
+          <PageLink>맞춤 추천도서</PageLink>
+        </div> */}
       </SideBar>
       <MainContents>
         {/* {clickMenu === "bookmark" ? <BookMark /> : <></>} */}

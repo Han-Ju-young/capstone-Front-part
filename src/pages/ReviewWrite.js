@@ -22,20 +22,16 @@ const RatingText = styled.div`
 const Stars = styled.div`
   display: flex;
   padding-top: 5px;
-
   & svg {
     color: gray;
     cursor: pointer;
   }
-
   :hover svg {
     color: #fcc419;
   }
-
   & svg:hover ~ svg {
     color: gray;
   }
-
   .yellowStar {
     color: #fcc419;
   }
@@ -64,18 +60,12 @@ const ReviewWrite = (props) => {
   );
 
   useEffect(() => {
-    console.log("clicked : ", clicked);
     sendReview();
   }, [clicked]);
 
   const sendReview = () => {
     let score = clicked.filter(Boolean).length;
     setScore(score);
-    console.log("score : ", score);
-  };
-
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
   };
 
   const handleReviewChange = (event) => {
@@ -102,7 +92,6 @@ const ReviewWrite = (props) => {
   };
 
   const handleStarClick = (index) => {
-    console.log("index : ", index);
     let clickStates = [...clicked];
     for (let i = 0; i < 6; i++) {
       clickStates[i] = i <= index ? true : false;
@@ -114,6 +103,7 @@ const ReviewWrite = (props) => {
     <div className="container">
       <div
         style={{
+          marginTop: "30px",
           display: "flex",
           justifyContent: "flex-end",
         }}

@@ -6,13 +6,6 @@ import ReviewWrite from "./ReviewWrite";
 import Modal from "react-modal";
 import "./review.css";
 
-const buttonStyle = {
-  backgroundColor: "#22b8cf",
-  border: "none",
-  color: "white",
-  height: "30px",
-};
-
 function Review() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pageNum, setPageNum] = useState(0);

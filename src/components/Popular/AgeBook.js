@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import AgeSide from "./AgeSide";
-import NaruBookList from "../../pages/NaruBookList";
+import NaruBookList from "../BookList/NaruBookList";
 
 const AgeBook = ({ category }) => {
   const [data, setData] = useState([]);

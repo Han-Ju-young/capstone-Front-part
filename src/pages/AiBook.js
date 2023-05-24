@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AiBookList from "./AiBookList";
+import AiBookList from "../components/BookList/AiBookList";
 
 const AiBook = () => {
   const [data, setData] = useState([]);
@@ -67,6 +67,7 @@ const AiBook = () => {
         author: it.author,
         publisher: it.publisher,
         description: it.description,
+        cover: it.cover,
         isbn: it.isbn,
       };
     });
@@ -75,13 +76,22 @@ const AiBook = () => {
 
   return (
     <div>
-      <h2>사용자 맞춤 추천 도서</h2>
-      <br />
-      <br />
-      {data &&
-        data.map((item) => {
-          return <AiBookList {...item} />;
-        })}
+      {data.length !== 0 ? (
+        <div>
+          <h2>사용자 맞춤 추천 도서</h2>
+          <br />
+          <br />
+          {data &&
+            data.map((item) => {
+              return <AiBookList {...item} />;
+            })}
+        </div>
+      ) : (
+        <div style={{ textAlign: "center" }}>
+          <h2>사용자 정보를 찾을 수 없습니다</h2>
+          <h2>로그인 후 이용해주시기 바랍니다.</h2>
+        </div>
+      )}
     </div>
   );
 };

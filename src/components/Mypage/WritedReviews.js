@@ -62,7 +62,7 @@ const Main = styled.div`
 
   .row-review-info img {
     width: 100px;
-    height: 100px;
+    height: 120px;
   }
 
   .row-review {

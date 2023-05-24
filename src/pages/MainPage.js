@@ -440,7 +440,7 @@ function MainPage() {
           <ReviewSection>
             <div style={{ marginTop: "15vh" }}>
               <div style={{ textAlign: "center" }}>
-                <h1>도서 리뷰</h1>
+                <h1>최신 리뷰</h1>
               </div>
               <div
                 style={{
@@ -453,7 +453,13 @@ function MainPage() {
                   return (
                     <Card style={cardStyle} key={idx}>
                       <Card.Body>
-                        <Card.Img variant="top" src={el.bookImgUrl} />
+                        <Card.Img
+                          variant="top"
+                          src={el.bookImgUrl}
+                          style={{
+                            height: "250px",
+                          }}
+                        />
                         <Card.Title>{el.contents}</Card.Title>
                         <Card.Text
                           style={{

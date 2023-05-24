@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import NaruBookList from "../../pages/NaruBookList";
+import NaruBookList from "../BookList/NaruBookList";
 import AreaSide from "./AreaSide";
 
 const AreaBook = ({ category }) => {

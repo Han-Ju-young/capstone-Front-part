@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BookList from "../../pages/BookList";
+import BookList from "../BookList/BookList";
 
 const BestBook = ({ category }) => {
   const [data, setData] = useState([]);
