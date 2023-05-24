@@ -41,9 +41,17 @@ const DetailSearchBook = () => {
   const [AreaData, setAreaDate] = useState("11");
   const onAreaSelect = useCallback((AreaData) => setAreaDate(AreaData), []);
 
+  const [bookMark, setBookMark] = useState({}); // 북마크 용 state
+
   useEffect(() => {
     getData();
+    getIsBookMarked();
   }, []);
+  // 북마크 등록 및 삭제 시 re-render
+  useEffect(() => {
+    getIsBookMarked();
+  }, [bookMark]);
+
   useEffect(() => {
     getLiData();
   }, [AreaData]);
@@ -91,7 +99,61 @@ const DetailSearchBook = () => {
     setLiDate(() => initDatas);
   };
 
-  console.log(userInfo.isbn);
+  // 북마크 생성 or 삭제 여부 조회 api
+  const getIsBookMarked = async () => {
+    const res = await fetch(
+      "https://api.look-book.site/search/book/" + userInfo.isbn + "/bookmark",
+      {
+        method: "get",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Authorization 설정
+        },
+      }
+    ).then((res) => res.json());
+    setBookMark({ ...res });
+  };
+
+  // 북마크 등록 및 삭제 이벤트
+  const handleBookMark = async () => {
+    if (bookMark.bookmarkNo === 0) {
+      // 북마크 등록
+      const res = await fetch(
+        `https://api.look-book.site/search/book/${userInfo.isbn}/bookmark`,
+        {
+          method: "post",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Authorization 설정
+          },
+        }
+      ).then((res) => {
+        if (res.ok) {
+          console.log("북마크 등록 성공");
+          setBookMark({ ...bookMark });
+        } else {
+          console.log("북마크 등록 실패");
+        }
+      });
+    } else {
+      // 북마크 삭제
+      const res = await fetch(
+        `https://api.look-book.site/search/book/bookmark/${bookMark.bookmarkNo}`,
+        {
+          method: "delete",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`, // Authorization 설정
+          },
+        }
+      ).then((res) => {
+        if (res.ok) {
+          console.log("북마크 삭제 성공");
+          setBookMark({ ...bookMark });
+        } else {
+          console.log("북마크 삭제 실패");
+        }
+      });
+    }
+  };
+
   return (
     <div>
       <div>
@@ -127,6 +189,27 @@ const DetailSearchBook = () => {
                   }}
                 >
                   도서 구매하기
+                </button>
+              </td>
+              <td>
+                <button
+                  style={{
+                    backgroundColor: "white",
+                    border: "none",
+                    color: "white",
+                    height: "30px",
+                  }}
+                  onClick={handleBookMark}
+                >
+                  <img
+                    src={
+                      bookMark.bookmarkNo === 0
+                        ? "/images/bookmark_off.png"
+                        : "/images/bookmark_on.png"
+                    }
+                    alt="북마크"
+                    height={30}
+                  ></img>
                 </button>
               </td>
             </tr>

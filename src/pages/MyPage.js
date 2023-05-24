@@ -32,7 +32,7 @@ function MyPage() {
         <div>
           <AiOutlineUser style={{ fontSize: "100px" }} />
         </div>
-        {/* <div
+        <div
           style={{
             marginTop: "10vh",
             color: clickMenu === "bookmark" ? "blue" : "",
@@ -42,7 +42,7 @@ function MyPage() {
           }}
         >
           <PageLink>북마크</PageLink>
-        </div> */}
+        </div>
         <div
           style={{
             marginTop: "2vh",
@@ -74,7 +74,7 @@ function MyPage() {
         </div> */}
       </SideBar>
       <MainContents>
-        {/* {clickMenu === "bookmark" ? <BookMark /> : <></>} */}
+        {clickMenu === "bookmark" ? <BookMark /> : <></>}
         {clickMenu === "likedReview" ? <LikedReview /> : <></>}
         {clickMenu === "writedRivew" ? <WritedReviews /> : <></>}
       </MainContents>
