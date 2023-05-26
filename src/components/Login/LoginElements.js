@@ -13,7 +13,7 @@ export const Container = styled.div`
   right: 0;
   z-index: 0;
   overflow: hidden;
-  background: #01bf71;
+  background: black;
 `;
 
 export const Form = styled.form`
@@ -26,6 +26,7 @@ export const Form = styled.form`
   padding: 80px 32px;
   border-radius: 4px;
   text-align: center;
+  border: 1px solid white;
 
   @media screen and (max-width: 480px) {
     padding: 32px 32px;

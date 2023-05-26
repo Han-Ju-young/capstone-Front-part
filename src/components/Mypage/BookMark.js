@@ -40,20 +40,25 @@ function BookMark() {
         {bookMark.length > 0 &&
           bookMark.map((v) => {
             return (
-              <Link to={`/detail/${v.isbn}`}>
-                <Card
-                  style={{ width: "210px", margin: "30px", border: "none" }}
-                  key={v.isbn}
-                >
-                  <Card.Img variant="top" src={v.bookImgUrl} />
-                  <Card.Body>
-                    <Card.Title style={{ color: "black" }}>
-                      {v.bookTitle}
-                    </Card.Title>
-                    <Card.Text>{v.bookAuthor}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Link>
+              <Card
+                style={{ width: "210px", margin: "30px", border: "none" }}
+                key={v.isbn}
+              >
+                <Link to={`/detail/${v.isbn}`}>
+                  <Card.Img
+                    variant="top"
+                    src={v.bookImgUrl}
+                    style={{
+                      width: "240px",
+                      height: "330px",
+                    }}
+                  />
+                </Link>
+                <Card.Body>
+                  <Card.Title>{v.bookTitle}</Card.Title>
+                  <Card.Text>{v.bookAuthor}</Card.Text>
+                </Card.Body>
+              </Card>
             );
           })}
       </div>
