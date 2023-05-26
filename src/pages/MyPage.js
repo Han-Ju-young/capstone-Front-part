@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineUser } from "react-icons/ai";
 import BookMark from "../components/Mypage/BookMark";
@@ -9,7 +9,6 @@ const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* flex: 0.2 auto; */
   margin-left: 2vw;
 `;
 const PageLink = styled.button`
@@ -24,7 +23,7 @@ const PageLink = styled.button`
 const MainContents = styled.div``;
 
 function MyPage() {
-  const [clickMenu, setClickMenu] = useState("likedReview");
+  const [clickMenu, setClickMenu] = useState("bookmark");
 
   return (
     <div style={{ display: "flex" }}>
@@ -65,13 +64,6 @@ function MyPage() {
         >
           <PageLink>작성한 리뷰</PageLink>
         </div>
-        {/* <div
-          style={{
-            marginTop: "2vh",
-          }}
-        >
-          <PageLink>맞춤 추천도서</PageLink>
-        </div> */}
       </SideBar>
       <MainContents>
         {clickMenu === "bookmark" ? <BookMark /> : <></>}

@@ -130,11 +130,7 @@ function LikedReview() {
           return (
             <div className="main-contents-reviews" key={review.no}>
               <div className="row-review-info">
-                <Link
-                  to={`/bookDetail?bookAuthor=${review.bookAuthor}&bookImgUrl=${review.bookImgUrl}&bookTitle=${review.bookTitle}`}
-                >
-                  <img src={review.bookImgUrl} />
-                </Link>
+                <img src={review.bookImgUrl} />
                 <div className="row-review">
                   <div>{`${review.memberNickname} ${review.createdAt.slice(
                     0,

@@ -23,13 +23,14 @@ function BookMark() {
 
   useEffect(() => {
     getBookMarks();
-  });
+  }, []);
 
   return (
-    <Container style={{ textAlign: "center", marginLeft: "10vw" }}>
+    <Container style={{ textAlign: "center", marginLeft: "5vw" }}>
+      <h2 style={{ textAlign: "left" }}>북마크 도서 목록</h2>
       <div
         style={{
-          width: "1300px",
+          width: "1100px",
           height: "1300px",
           display: "flex",
           flexDirection: "row",
@@ -40,10 +41,15 @@ function BookMark() {
           bookMark.map((v) => {
             return (
               <Link to={`/detail/${v.isbn}`}>
-                <Card style={{ width: "18rem", margin: "40px" }} key={v.isbn}>
+                <Card
+                  style={{ width: "210px", margin: "30px", border: "none" }}
+                  key={v.isbn}
+                >
                   <Card.Img variant="top" src={v.bookImgUrl} />
                   <Card.Body>
-                    <Card.Title>{v.bookTitle}</Card.Title>
+                    <Card.Title style={{ color: "black" }}>
+                      {v.bookTitle}
+                    </Card.Title>
                     <Card.Text>{v.bookAuthor}</Card.Text>
                   </Card.Body>
                 </Card>

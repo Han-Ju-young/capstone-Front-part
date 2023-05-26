@@ -5,11 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import { persistStore } from "redux-persist"; // load
+import { PersistGate } from "redux-persist/integration/react"; // load
+
+const persistor = persistStore(store); // 정의
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 );
 // If you want to start measuring performance in your app, pass a function

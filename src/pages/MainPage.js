@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaStar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Main = styled.div`
   display: flex;
@@ -77,21 +77,6 @@ function MainPage() {
         discount: `${el.discount}`,
         link: `${el.link}`,
         isbn: `${el.isbn}`,
-      },
-    });
-  };
-
-  const PopnavigateToPurchase = (item) => {
-    navigate("/detail", {
-      state: {
-        cover: `${item.cover}`,
-        title: `${item.title}`,
-        author: `${item.author}`,
-        publisher: `${item.publisher}`,
-        pubDate: `${item.pubDate}`,
-        description: `${item.description}`,
-        link: `${item.link}`,
-        isbn: `${item.isbn13}`,
       },
     });
   };
@@ -280,15 +265,16 @@ function MainPage() {
                         border: "none",
                       }}
                     >
-                      <Card.Img
-                        style={{
-                          width: "240px",
-                          height: "330px",
-                        }}
-                        onClick={() => PopnavigateToPurchase(bestSeller)}
-                        variant="top"
-                        src={bestSeller.cover}
-                      />
+                      <Link to={`/detail/${bestSeller.isbn13}`}>
+                        <Card.Img
+                          style={{
+                            width: "240px",
+                            height: "330px",
+                          }}
+                          variant="top"
+                          src={bestSeller.cover}
+                        />
+                      </Link>
                       <Card.Body
                         style={{
                           fontSize: "18px",
@@ -415,28 +401,6 @@ function MainPage() {
               </Card>
             </div>
           </Container>
-          {/* <Container style={{ marginTop: "15vh" }}>
-            <div style={{ textAlign: "center" }}>
-              <h1>인공지능 추천도서</h1>
-            </div>
-            <Row style={{ marginTop: "5vh" }}>
-              {[
-                "인공지능 도서",
-                "인공지능 추천 도서 기능",
-                "인공지능 도서",
-              ].map((category, idx) => {
-                return (
-                  <Col key={idx}>
-                    <Card style={{ width: "18rem", textAlign: "center" }}>
-                      <Card.Body>
-                        <Card.Title>{category}</Card.Title>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                );
-              })}
-            </Row>
-          </Container> */}
           <ReviewSection>
             <div style={{ marginTop: "15vh" }}>
               <div style={{ textAlign: "center" }}>
@@ -453,13 +417,16 @@ function MainPage() {
                   return (
                     <Card style={cardStyle} key={idx}>
                       <Card.Body>
-                        <Card.Img
-                          variant="top"
-                          src={el.bookImgUrl}
-                          style={{
-                            height: "250px",
-                          }}
-                        />
+                        <Link to={`/detail/${el.isbn}`}>
+                          <Card.Img
+                            style={{
+                              width: "240px",
+                              height: "330px",
+                            }}
+                            variant="top"
+                            src={el.bookImgUrl}
+                          />
+                        </Link>
                         <Card.Title>{el.contents}</Card.Title>
                         <Card.Text
                           style={{

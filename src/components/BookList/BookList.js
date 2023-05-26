@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BookList = (item) => {
   const coverStyle = {
@@ -25,31 +25,15 @@ const BookList = (item) => {
     marginRight: "20px",
   };
 
-  const navigate = useNavigate();
-  const navigateToPurchase = () => {
-    navigate("/detail", {
-      state: {
-        cover: `${item.cover}`,
-        title: `${item.title}`,
-        author: `${item.author}`,
-        publisher: `${item.publisher}`,
-        pubDate: `${item.pubDate}`,
-        description: `${item.description}`,
-        link: `${item.link}`,
-        isbn: `${item.isbn}`,
-      },
-    });
-  };
-
   return (
     <div style={divStyle}>
       <table>
         <tbody>
           <tr>
             <td rowSpan={4}>
-              <button style={buttonsty} onClick={() => navigateToPurchase()}>
+              <Link to={`/detail/${item.isbn}`}>
                 <img src={item.cover} alt="bookCover" style={coverStyle} />
-              </button>
+              </Link>
             </td>
             <td style={titleStyle}>{item.title}</td>
           </tr>

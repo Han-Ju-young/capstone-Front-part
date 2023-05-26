@@ -17,7 +17,7 @@ import {
   indexReducer_LogOut,
 } from "../../store/actions/indexAction";
 
-const Navbar = ({ toggle, isLog, setLog }) => {
+const Navbar = ({ toggle, isLog }) => {
   const dispatch = useDispatch();
   return (
     <div>

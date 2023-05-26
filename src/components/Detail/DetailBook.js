@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SimilarBook from "./SimilarBook";
 import AreaSide from "./AreaSide";
 import LibraryBook from "./LibraryBook";
 import DetailReview from "./DetailReview";
+import axios from "axios";
 
 const DetailBook = () => {
   const coverStyle = {
@@ -31,8 +32,8 @@ const DetailBook = () => {
   };
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const userInfo = { ...location.state };
+  const params = useParams();
+  const [bookInfo, setBookInfo] = useState({});
   const [data, setData] = useState([]);
   const [lidata, setLiDate] = useState([]);
   const [AreaData, setAreaDate] = useState("11");
@@ -41,9 +42,11 @@ const DetailBook = () => {
   const [bookMark, setBookMark] = useState({}); // 북마크 용 state
 
   useEffect(() => {
+    getBookDetailData();
     getData();
     getIsBookMarked();
   }, []);
+
   // 북마크 등록 및 삭제 시 re-render
   useEffect(() => {
     getIsBookMarked();
@@ -55,10 +58,17 @@ const DetailBook = () => {
   //https://api.look-book.site/search/book/9791189327156/library/region/11
   //https://api.look-book.site/search/book/9791189327156/similar-book/mania
 
+  const getBookDetailData = async () => {
+    const res = await axios.get(
+      `https://api.look-book.site/search/book/${params.isbn}`
+    );
+    setBookInfo({ ...res.data.item[0] });
+  };
+
   const getData = async () => {
     const res = await fetch(
       "https://api.look-book.site/search/book/" +
-        userInfo.isbn +
+        params.isbn +
         "/similar-book/mania"
     ).then((res) => res.json());
 
@@ -78,7 +88,7 @@ const DetailBook = () => {
   const getLiData = async () => {
     const res = await fetch(
       "https://api.look-book.site/search/book/" +
-        userInfo.isbn +
+        params.isbn +
         "/library/region/" +
         AreaData
     ).then((res) => res.json());
@@ -99,7 +109,7 @@ const DetailBook = () => {
   // 북마크 생성 or 삭제 여부 조회 api
   const getIsBookMarked = async () => {
     const res = await fetch(
-      "https://api.look-book.site/search/book/" + userInfo.isbn + "/bookmark",
+      "https://api.look-book.site/search/book/" + params.isbn + "/bookmark",
       {
         method: "get",
         headers: {
@@ -115,7 +125,7 @@ const DetailBook = () => {
     if (bookMark.bookmarkNo === 0) {
       // 북마크 등록
       const res = await fetch(
-        `https://api.look-book.site/search/book/${userInfo.isbn}/bookmark`,
+        `https://api.look-book.site/search/book/${params.isbn}/bookmark`,
         {
           method: "post",
           headers: {
@@ -158,9 +168,9 @@ const DetailBook = () => {
           <tbody>
             <tr>
               <td rowSpan={4}>
-                <img src={userInfo.cover} alt="bookCover" style={coverStyle} />
+                <img src={bookInfo.cover} alt="bookCover" style={coverStyle} />
               </td>
-              <td style={titleStyle}>{userInfo.title}</td>
+              <td style={titleStyle}>{bookInfo.title}</td>
               <td
                 style={{
                   textAlign: "right",
@@ -173,18 +183,18 @@ const DetailBook = () => {
             </tr>
             <tr>
               <td colSpan={2}>
-                {userInfo.author} | {userInfo.publisher} | {userInfo.pubDate}
+                {bookInfo.author} | {bookInfo.publisher} | {bookInfo.pubDate}
               </td>
             </tr>
             <tr>
-              <td colSpan={2}>{userInfo.description}</td>
+              <td colSpan={2}>{bookInfo.description}</td>
             </tr>
             <tr>
               <td>
                 <button
                   style={buttonStyle}
                   onClick={() => {
-                    window.open(userInfo.link);
+                    window.open(bookInfo.link);
                   }}
                 >
                   알라딘에서 도서 구매
@@ -215,7 +225,7 @@ const DetailBook = () => {
           </tbody>
         </table>
       </div>
-      <DetailReview isbn={userInfo.isbn} />
+      <DetailReview isbn={params.isbn} />
 
       <div>
         {data.length !== 0 ? (
