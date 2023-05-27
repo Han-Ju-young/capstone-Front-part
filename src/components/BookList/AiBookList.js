@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AiBookList = (item) => {
   const coverStyle = {
     width: "150px",
@@ -16,16 +18,16 @@ const AiBookList = (item) => {
     border: "none",
     marginRight: "20px",
   };
-  //onClick={() => navigateToPurchase()}
+
   return (
     <div style={divStyle}>
       <table>
         <tbody>
           <tr>
             <td rowSpan={4}>
-              <button style={buttonsty}>
+              <Link to={`/detail/${item.isbn}`}>
                 <img src={item.cover} alt="bookCover" style={coverStyle} />
-              </button>
+              </Link>
             </td>
             <td style={titleStyle}>{item.title}</td>
           </tr>

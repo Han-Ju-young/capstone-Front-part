@@ -47,11 +47,6 @@ const DetailBook = () => {
     getIsBookMarked();
   }, []);
 
-  // 북마크 등록 및 삭제 시 re-render
-  useEffect(() => {
-    getIsBookMarked();
-  }, [bookMark]);
-
   useEffect(() => {
     getLiData();
   }, [AreaData]);
@@ -159,6 +154,9 @@ const DetailBook = () => {
         }
       });
     }
+
+    // 북마크 조회 여부 후처리
+    getIsBookMarked();
   };
 
   return (
