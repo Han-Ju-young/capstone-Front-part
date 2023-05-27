@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const NAVER_URI = `https://api.look-book.site/oauth2/authorization/naver?redirect_uri=http://localhost:3000/sologin`;
-  const KAKAO_URI = `https://api.look-book.site/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/sologin`;
-  const GOOGLE_URI = `https://api.look-book.site/oauth2/authorization/google?redirect_uri=http://localhost:3000/sologin`;
+  const NAVER_URI = `https://api.look-book.site/oauth2/authorization/naver?redirect_uri=https://www.look-book/sologin`;
+  const KAKAO_URI = `https://api.look-book.site/oauth2/authorization/kakao?redirect_uri=https://www.look-book/sologin`;
+  const GOOGLE_URI = `https://api.look-book.site/oauth2/authorization/google?redirect_uri=https://www.look-book/sologin`;
   return (
     <>
       <Container>

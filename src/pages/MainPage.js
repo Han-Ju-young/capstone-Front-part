@@ -211,7 +211,7 @@ function MainPage() {
           <Form.Group
             className="mb-3"
             controlId="exampleForm.ControlInput1"
-            style={{ display: "flex" }}
+            style={{ display: "flex", width: "500px" }}
           >
             <Form.Label
               style={{
